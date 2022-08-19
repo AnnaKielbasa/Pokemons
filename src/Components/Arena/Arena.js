@@ -1,11 +1,10 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import GitHubIcon from "@mui/icons-material/GitHub";
+// import { Button } from "@mui/material";
 
 const LeftContainer = styled.div`
   width: 100px;
   height: 200px;
-  color: red;
   background-color: red;
 `;
 const Arena = () => {
@@ -13,11 +12,12 @@ const Arena = () => {
     <>
       Arena
       <LeftContainer>
-        <div>
-          {/* <FacebookIcon sx={{ color: "red" }} />
-        <GitHubIcon sx={{ color: "green" }} /> */}
-        </div>
+        <div>hello</div>
       </LeftContainer>
+      {/* <Button>Back to main</Button> */}
+      <button>
+        <Link to="/">Powrót do strony głównej</Link>
+      </button>
     </>
   );
 };

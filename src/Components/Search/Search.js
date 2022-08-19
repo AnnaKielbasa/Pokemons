@@ -1,5 +1,7 @@
+// import Input from "@mui/material/Input";
+
 const Search = () => {
-  return <div>Search</div>;
+  return <>search</>;
 };
 
 export default Search;
