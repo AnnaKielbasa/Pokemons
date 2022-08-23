@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-// import { Button } from "@mui/material";
+import { Button } from "@mui/material";
 
 const LeftContainer = styled.div`
   width: 100px;
@@ -14,9 +14,10 @@ const Arena = () => {
       <LeftContainer>
         <div>hello</div>
       </LeftContainer>
-      {/* <Button>Back to main</Button> */}
       <button>
-        <Link to="/">Powrót do strony głównej</Link>
+        <Link to="/">
+          <Button>Powrót do strony głównej</Button>
+        </Link>
       </button>
     </>
   );
