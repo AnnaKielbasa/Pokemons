@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Nav from "./Components/Nav/Nav";
-import PokemonList from "./Components/PokemonList/PokemonList";
-import Search from "./Components/Search/Search";
+import HomepageContent from "./Components/HomepageContent/HomepageContent";
 import Favs from "./Components/Favs/Favs";
 import Arena from "./Components/Arena/Arena";
 import Login from "./Components/Login/Login";
@@ -14,15 +13,7 @@ const Routing = () => {
     <BrowserRouter>
       <Nav />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <Search />
-              <PokemonList />
-            </>
-          }
-        />
+        <Route path="/" element={<HomepageContent />} />
         <Route path="favs" element={<Favs />} />
         <Route path="arena" element={<Arena />} />
         <Route path="login" element={<Login />} />

@@ -10,11 +10,15 @@ const S = {
   `,
 };
 const Search = () => {
+  const searchPokemon = (event) => {};
   return (
     <>
       <S.Box>
         <FormControl>
-          <OutlinedInput placeholder="Please enter text" />
+          <OutlinedInput
+            onChange={(event) => searchPokemon(event)}
+            placeholder="Please enter text"
+          />
         </FormControl>
       </S.Box>
     </>

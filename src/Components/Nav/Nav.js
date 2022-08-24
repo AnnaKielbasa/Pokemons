@@ -9,7 +9,9 @@ const S = {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 1rem 2rem;
+    margin: 1rem 0;
+    padding: 1rem 2rem;
+    background-color: #ffef96;
   `,
   Logo: styled.div`
     color: red;

@@ -1,6 +1,6 @@
 import { ThemeProvider } from "styled-components";
 import { useState } from "react";
-// import "./App.css";
+import "./App.css";
 // import { theme } from "./Theme";
 
 import Routing from "./Routing";

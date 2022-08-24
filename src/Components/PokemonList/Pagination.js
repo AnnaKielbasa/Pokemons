@@ -1,9 +1,10 @@
+import { Button } from "@mui/material";
 import styled from "styled-components";
 
 const S = {
   Pagination: styled.div`
     display: flex;
-    background-color: blue;
+    background-color: #ffef96;
     justify-content: center;
     align-items: center;
   `,
@@ -12,8 +13,8 @@ const S = {
 export default function Pagination({ gotoNextPage, gotoPrevPage }) {
   return (
     <S.Pagination>
-      {gotoPrevPage && <button onClick={gotoPrevPage}>Previous</button>}
-      {gotoNextPage && <button onClick={gotoNextPage}>Next</button>}
+      {gotoPrevPage && <Button onClick={gotoPrevPage}>Previous</Button>}
+      {gotoNextPage && <Button onClick={gotoNextPage}>Next</Button>}
     </S.Pagination>
   );
 }
