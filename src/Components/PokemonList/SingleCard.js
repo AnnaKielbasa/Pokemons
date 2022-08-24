@@ -13,11 +13,15 @@ const S = {
     flex-direction: column;
     font-size: 0.75rem;
     > img {
+      display: flex;
       justify-content: center;
       align-items: center;
     }
     > h2 {
       text-align: center;
+    }
+    &:hover {
+      transform: scale(1.025);
     }
   `,
   InfoContainer: styled.div`
@@ -33,7 +37,7 @@ const SingleCard = ({ pokemonData, loading }) => {
       {loading ? (
         <h1>Loading...</h1>
       ) : (
-        pokemonData.map((item) => {
+        pokemonData.slice(0, 15).map((item) => {
           return (
             <S.SigleCard
               key={item.id}

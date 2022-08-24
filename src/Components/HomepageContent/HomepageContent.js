@@ -38,6 +38,8 @@ const HomepageContent = () => {
   );
   const [nextPageUrl, setNextPageUrl] = useState();
   const [prevPageUrl, setPrevPageUrl] = useState();
+  const [searchValue, setSearchValue] = useState("");
+  const [filteredPokemons, setFilteredPokemons] = useState([]);
 
   useEffect(() => {
     setLoading(true);
@@ -67,16 +69,15 @@ const HomepageContent = () => {
     setCurrentPageUrl(prevPageUrl);
   }
 
-  const [searchValue, setSearchValue] = useState("");
+  const pokemonsToDisplay =
+    filteredPokemons.length === 0 ? pokemonData : filteredPokemons;
 
   useEffect(() => {
     const filteredPokemonData = pokemonData.filter((item) =>
       item.name.toLowerCase().includes(searchValue)
     );
-    setPokemonData(filteredPokemonData);
+    setFilteredPokemons(filteredPokemonData);
   }, [searchValue]);
-
-  // if (loading) return "Loading...";
 
   return (
     <>
@@ -85,6 +86,7 @@ const HomepageContent = () => {
       <S.Box>
         <FormControl>
           <OutlinedInput
+            value={searchValue}
             onChange={(event) =>
               setSearchValue(event.target.value.toLowerCase())
             }
@@ -94,7 +96,7 @@ const HomepageContent = () => {
       </S.Box>
       <S.Container>
         <S.Cards>
-          <SingleCard pokemonData={pokemonData} loading={loading} />
+          <SingleCard pokemonData={pokemonsToDisplay} loading={loading} />
         </S.Cards>
       </S.Container>
       <Pagination
