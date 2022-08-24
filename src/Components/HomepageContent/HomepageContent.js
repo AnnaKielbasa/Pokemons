@@ -1,10 +1,12 @@
-import Search from "../Search/Search";
+// import Search from "../Search/Search";
 
 import { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import Pagination from "./Pagination";
-import SingleCard from "./SingleCard";
+import Pagination from "../PokemonList/Pagination";
+import SingleCard from "../PokemonList/SingleCard";
+import FormControl from "@mui/material/FormControl";
+import OutlinedInput from "@mui/material/OutlinedInput";
 
 // import Pokeinfo from "../Pokeinfo/Pokeinfo";
 // import useFetch from "./useFetch";
@@ -22,12 +24,17 @@ const S = {
     grid-gap: 2rem;
     flex-basis: 100%;
   `,
+  Box: styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  `,
 };
 const HomepageContent = () => {
   const [loading, setLoading] = useState(true);
   const [pokemonData, setPokemonData] = useState([]);
   const [currentPageUrl, setCurrentPageUrl] = useState(
-    "https://pokeapi.co/api/v2/pokemon/?limit=15"
+    "https://pokeapi.co/api/v2/pokemon/?limit=151&offset=0"
   );
   const [nextPageUrl, setNextPageUrl] = useState();
   const [prevPageUrl, setPrevPageUrl] = useState();
@@ -60,11 +67,31 @@ const HomepageContent = () => {
     setCurrentPageUrl(prevPageUrl);
   }
 
+  const [searchValue, setSearchValue] = useState("");
+
+  useEffect(() => {
+    const filteredPokemonData = pokemonData.filter((item) =>
+      item.name.toLowerCase().includes(searchValue)
+    );
+    setPokemonData(filteredPokemonData);
+  }, [searchValue]);
+
   // if (loading) return "Loading...";
 
   return (
     <>
-      <Search />
+      {/* <Search pokemonData={pokemonData} loading={loading} /> */}
+
+      <S.Box>
+        <FormControl>
+          <OutlinedInput
+            onChange={(event) =>
+              setSearchValue(event.target.value.toLowerCase())
+            }
+            placeholder="Please enter text"
+          />
+        </FormControl>
+      </S.Box>
       <S.Container>
         <S.Cards>
           <SingleCard pokemonData={pokemonData} loading={loading} />

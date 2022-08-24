@@ -9,14 +9,25 @@ const S = {
     align-items: center;
   `,
 };
-const Search = () => {
-  const searchPokemon = (event) => {};
+const Search = ({ pokemonData, loading }) => {
+  const [pokemonSearch, setPokemonSearch] = useState("");
+  const searchPokemon = (event) => {
+    // console.log(event.target.value);
+    const test1 = pokemonData.filter((item) =>
+      item.name.toLowerCase().includes(pokemonSearch)
+    );
+    console.log(test1);
+    //  console.log( pokemonData.name.toLowerCase().includes(event.target.value.toLowerCase()))
+    // test1.includes(event.target.value.toLowerCase())
+  };
   return (
     <>
       <S.Box>
         <FormControl>
           <OutlinedInput
-            onChange={(event) => searchPokemon(event)}
+            onChange={(event) =>
+              setPokemonSearch(event.target.value.toLowerCase())
+            }
             placeholder="Please enter text"
           />
         </FormControl>

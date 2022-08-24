@@ -2,6 +2,8 @@ import styled, { useTheme } from "styled-components";
 
 const S = {
   SigleCard: styled.div`
+    max-width: 400px;
+    max-height: 800px;
     background-color: #b2b2b2;
     border-radius: 1rem;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
@@ -11,8 +13,6 @@ const S = {
     flex-direction: column;
     font-size: 0.75rem;
     > img {
-      min-height: 100px;
-      min-width: 100px;
       justify-content: center;
       align-items: center;
     }
