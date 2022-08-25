@@ -14,11 +14,9 @@ const Arena = () => {
       <LeftContainer>
         <div>hello</div>
       </LeftContainer>
-      <button>
-        <Link to="/">
-          <Button>Powrót do strony głównej</Button>
-        </Link>
-      </button>
+      <Button>
+        <Link to="/">Powrót do strony głównej</Link>
+      </Button>
     </>
   );
 };

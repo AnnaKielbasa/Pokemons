@@ -1,15 +1,9 @@
-// import Search from "../Search/Search";
-
 import { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import Pagination from "../PokemonList/Pagination";
 import SingleCard from "../PokemonList/SingleCard";
-import FormControl from "@mui/material/FormControl";
-import OutlinedInput from "@mui/material/OutlinedInput";
-
-// import Pokeinfo from "../Pokeinfo/Pokeinfo";
-// import useFetch from "./useFetch";
+import Search from "../Search/Search";
 
 const S = {
   Container: styled.div`
@@ -23,11 +17,6 @@ const S = {
     grid-template-columns: repeat(auto-fit, minmax(20rem, 0.5fr));
     grid-gap: 2rem;
     flex-basis: 100%;
-  `,
-  Box: styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
   `,
 };
 const HomepageContent = () => {
@@ -70,30 +59,16 @@ const HomepageContent = () => {
   }
 
   const pokemonsToDisplay =
-    filteredPokemons.length === 0 ? pokemonData : filteredPokemons;
-
-  useEffect(() => {
-    const filteredPokemonData = pokemonData.filter((item) =>
-      item.name.toLowerCase().includes(searchValue)
-    );
-    setFilteredPokemons(filteredPokemonData);
-  }, [searchValue]);
+    searchValue.length === 0 ? pokemonData : filteredPokemons;
 
   return (
     <>
-      {/* <Search pokemonData={pokemonData} loading={loading} /> */}
-
-      <S.Box>
-        <FormControl>
-          <OutlinedInput
-            value={searchValue}
-            onChange={(event) =>
-              setSearchValue(event.target.value.toLowerCase())
-            }
-            placeholder="Please enter text"
-          />
-        </FormControl>
-      </S.Box>
+      <Search
+        pokemonData={pokemonData}
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+        setFilteredPokemons={setFilteredPokemons}
+      />
       <S.Container>
         <S.Cards>
           <SingleCard pokemonData={pokemonsToDisplay} loading={loading} />

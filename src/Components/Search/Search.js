@@ -1,4 +1,4 @@
-// import { useState } from "react";
+import { useEffect } from "react";
 import FormControl from "@mui/material/FormControl";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import styled from "styled-components";
@@ -9,24 +9,27 @@ const S = {
     align-items: center;
   `,
 };
-const Search = ({ pokemonData, loading }) => {
-  const [pokemonSearch, setPokemonSearch] = useState("");
-  const searchPokemon = (event) => {
-    // console.log(event.target.value);
-    const test1 = pokemonData.filter((item) =>
-      item.name.toLowerCase().includes(pokemonSearch)
+const Search = ({
+  pokemonData,
+  searchValue,
+  setSearchValue,
+  setFilteredPokemons,
+}) => {
+  useEffect(() => {
+    const filteredPokemonData = pokemonData.filter((item) =>
+      item.name.toLowerCase().includes(searchValue)
     );
-    console.log(test1);
-    //  console.log( pokemonData.name.toLowerCase().includes(event.target.value.toLowerCase()))
-    // test1.includes(event.target.value.toLowerCase())
-  };
+    setFilteredPokemons(filteredPokemonData);
+  }, [searchValue]);
+
   return (
     <>
       <S.Box>
         <FormControl>
           <OutlinedInput
+            value={searchValue}
             onChange={(event) =>
-              setPokemonSearch(event.target.value.toLowerCase())
+              setSearchValue(event.target.value.toLowerCase())
             }
             placeholder="Please enter text"
           />

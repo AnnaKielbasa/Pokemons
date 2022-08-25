@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Nav from "./Components/Nav/Nav";
 import HomepageContent from "./Components/HomepageContent/HomepageContent";
+import Pokeinfo from "./Components/Pokeinfo/Pokeinfo";
 import Favs from "./Components/Favs/Favs";
 import Arena from "./Components/Arena/Arena";
 import Login from "./Components/Login/Login";
@@ -14,6 +15,8 @@ const Routing = () => {
       <Nav />
       <Routes>
         <Route path="/" element={<HomepageContent />} />
+        <Route path="pokeinfo" element={<Pokeinfo />} />
+
         <Route path="favs" element={<Favs />} />
         <Route path="arena" element={<Arena />} />
         <Route path="login" element={<Login />} />

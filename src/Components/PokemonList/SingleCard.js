@@ -1,4 +1,5 @@
-import styled, { useTheme } from "styled-components";
+import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const S = {
   SigleCard: styled.div`
@@ -12,7 +13,8 @@ const S = {
     display: flex;
     flex-direction: column;
     font-size: 0.75rem;
-    > img {
+    > img,
+    span {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -20,6 +22,7 @@ const S = {
     > h2 {
       text-align: center;
     }
+
     &:hover {
       transform: scale(1.025);
     }
@@ -32,16 +35,23 @@ const S = {
 };
 
 const SingleCard = ({ pokemonData, loading }) => {
+  const navigate = useNavigate();
+  const navigateToPokeinfo = () => {
+    navigate("/pokeinfo");
+  };
   return (
     <>
       {loading ? (
         <h1>Loading...</h1>
+      ) : pokemonData.length === 0 ? (
+        <h1>Nie znaleziono pokemona</h1>
       ) : (
         pokemonData.slice(0, 15).map((item) => {
           return (
             <S.SigleCard
               key={item.id}
-              // onClick={() => infoPokemon(item)}
+              pokemonData={pokemonData}
+              onClick={() => navigateToPokeinfo()}
             >
               <img src={item.sprites.front_default} alt="" />
               <h2>{item.name}</h2>
