@@ -10,13 +10,9 @@ const S = {
     width: 90%;
     margin: auto;
     padding-top: 20px;
-    display: flex;
-  `,
-  Cards: styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 0.5fr));
     grid-gap: 2rem;
-    flex-basis: 100%;
   `,
 };
 const HomepageContent = () => {
@@ -70,9 +66,7 @@ const HomepageContent = () => {
         setFilteredPokemons={setFilteredPokemons}
       />
       <S.Container>
-        <S.Cards>
-          <SingleCard pokemonData={pokemonsToDisplay} loading={loading} />
-        </S.Cards>
+        <SingleCard pokemonData={pokemonsToDisplay} loading={loading} />
       </S.Container>
       <Pagination
         gotoNextPage={nextPageUrl ? gotoNextPage : null}

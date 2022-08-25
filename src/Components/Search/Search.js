@@ -7,6 +7,12 @@ const S = {
     display: flex;
     justify-content: center;
     align-items: center;
+    > OutlinedInput {
+      background-color: #ffef96;
+    }
+  `,
+  OutlinedInput: styled(OutlinedInput)`
+    background-color: #ffef96;
   `,
 };
 const Search = ({
@@ -26,12 +32,12 @@ const Search = ({
     <>
       <S.Box>
         <FormControl>
-          <OutlinedInput
+          <S.OutlinedInput
             value={searchValue}
             onChange={(event) =>
               setSearchValue(event.target.value.toLowerCase())
             }
-            placeholder="Please enter text"
+            placeholder="Search..."
           />
         </FormControl>
       </S.Box>

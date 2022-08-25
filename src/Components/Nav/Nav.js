@@ -11,18 +11,22 @@ const S = {
     align-items: center;
     margin: 1rem 0;
     padding: 1rem 2rem;
-    background-color: #ffef96;
+    background-color: #50394c;
   `,
   Logo: styled.div`
-    color: red;
+    color: #ffef96;
   `,
-  RightContainer: styled.div`
+  Container: styled.div`
     display: flex;
     gap: 1rem;
-  `,
-  HidenContainer: styled.div`
-    display: flex;
-    gap: 1rem;
+    > a {
+      text-decoration: none;
+      color: #ffef96;
+
+      &:hover {
+        background-color: #b2b2b2;
+      }
+    }
   `,
 };
 const Nav = () => {
@@ -30,16 +34,16 @@ const Nav = () => {
     <div>
       <S.Nav>
         <S.Logo>Pokedex</S.Logo>
-        <S.RightContainer>
+        <S.Container>
           <Link to="/favs">Ulubione</Link>
           <Link to="/arena">Arena</Link>
           <Link to="/login">Logowanie</Link>
           <Link to="/register">Rejestracja</Link>
-        </S.RightContainer>
-        <S.HidenContainer>
+        </S.Container>
+        <S.Container>
           <Link to="/edit">Edit</Link>
           <Link to="/">Logout</Link>
-        </S.HidenContainer>
+        </S.Container>
       </S.Nav>
       <section>
         <Outlet />

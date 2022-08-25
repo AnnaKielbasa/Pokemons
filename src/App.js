@@ -1,6 +1,7 @@
 import { ThemeProvider } from "styled-components";
 import { useState } from "react";
-import "./App.css";
+import GlobalStyle from "./globalStyles";
+
 // import { theme } from "./Theme";
 
 import Routing from "./Routing";
@@ -24,6 +25,7 @@ function App() {
   return (
     <>
       <ThemeProvider theme={isDarkTheme ? earthyTheme : mainTheme}>
+        <GlobalStyle />
         <Routing />
       </ThemeProvider>
     </>

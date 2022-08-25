@@ -5,7 +5,7 @@ const S = {
   SigleCard: styled.div`
     max-width: 400px;
     max-height: 800px;
-    background-color: #b2b2b2;
+    background-color: #ffef96;
     border-radius: 1rem;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
     flex-basis: 100%;
@@ -13,24 +13,35 @@ const S = {
     display: flex;
     flex-direction: column;
     font-size: 0.75rem;
-    > img,
-    span {
+    padding: 40px;
+    text-align: center;
+    > img {
       display: flex;
       justify-content: center;
       align-items: center;
+      height: 100%;
+      width: 100%;
+      max-height: 200px;
     }
     > h2 {
-      text-align: center;
+      color: #50394c;
     }
-
     &:hover {
       transform: scale(1.025);
     }
   `,
-  InfoContainer: styled.div`
+
+  AllInfoContainer: styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 3fr));
     grid-gap: 1rem;
+  `,
+  InfoContainer: styled.div`
+    display: flex;
+    flex-direction: column;
+    > span {
+      color: #50394c;
+    }
   `,
 };
 
@@ -53,17 +64,34 @@ const SingleCard = ({ pokemonData, loading }) => {
               pokemonData={pokemonData}
               onClick={() => navigateToPokeinfo()}
             >
-              <img src={item.sprites.front_default} alt="" />
-              <h2>{item.name}</h2>
-              <S.InfoContainer>
-                <h2>{item.height} Height</h2>
-                <h2>{item.weight} Weight</h2>
-                <h2>{item.base_experience} Base experience </h2>
-                <h2>
-                  {item.abilities.map((item) => `${item.ability.name}, `)}
-                  Ability
-                </h2>
-              </S.InfoContainer>
+              <img
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${item.id}.svg`}
+                alt=""
+              />
+
+              <h2>
+                {item.name.slice(0, 1).toUpperCase() + item.name.slice(1)}
+              </h2>
+              <S.AllInfoContainer>
+                <S.InfoContainer>
+                  <span>{item.height} </span>
+                  <h3>Height</h3>
+                </S.InfoContainer>
+                <S.InfoContainer>
+                  <span>{item.weight} </span>
+                  <h3>Weight</h3>
+                </S.InfoContainer>
+                <S.InfoContainer>
+                  <span>{item.base_experience} </span>
+                  <h3> Base experience</h3>
+                </S.InfoContainer>
+                <S.InfoContainer>
+                  <span>
+                    {item.abilities.map((item) => `${item.ability.name}, `)}
+                  </span>
+                  <h3>Abilities</h3>
+                </S.InfoContainer>
+              </S.AllInfoContainer>
             </S.SigleCard>
           );
         })

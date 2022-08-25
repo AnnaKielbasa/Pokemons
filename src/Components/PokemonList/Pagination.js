@@ -7,6 +7,7 @@ const S = {
     background-color: #ffef96;
     justify-content: center;
     align-items: center;
+    margin-top: 2rem;
   `,
 };
 
