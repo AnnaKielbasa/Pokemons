@@ -1,25 +1,85 @@
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import styled from "styled-components";
 import { Button } from "@mui/material";
-const Pokeinfo = ({ pokemonData }) => {
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { useState } from "react";
+
+const S = {
+  Header: styled.h1`
+    text-align: center;
+  `,
+  PokeinfoContainer: styled.div`
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0px 150px;
+  `,
+  Img: styled.div`
+    max-width: 400px;
+    max-height: 800px;
+  `,
+  AllInfoContainer: styled.div`
+    display: flex;
+    flex-direction: column;
+  `,
+  Name: styled.h2`
+    text-align: center;
+    color: #50394c;
+  `,
+  FavoriteIcon: styled(FavoriteIcon)`
+    color: ${({ fav }) => (fav ? "green" : "lightGrey")};
+  `,
+  InfoContainer: styled.div`
+    display: flex;
+    justify-content: space-around;
+    gap: 300px;
+    align-items: center;
+    text-align: center;
+  `,
+  Container: styled.div`
+    > span {
+      color: #50394c;
+    }
+  `,
+};
+const Pokeinfo = () => {
+  const { state } = useLocation();
+  const [fav, setFav] = useState(false);
+
   return (
     <>
-      Pokeinfo
-      <h1>{pokemonData.name}</h1>
-      <img
-        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemonData.id}.svg`}
-        alt=""
-      />
-      <div className="abilities">
-        {pokemonData.abilities.map((poke) => {
-          return (
-            <>
-              <div className="group">
-                <h2>{poke.ability.name}</h2>
-              </div>
-            </>
-          );
-        })}
-      </div>
+      <S.Header>Pokedex</S.Header>
+      <S.PokeinfoContainer>
+        <S.Img>
+          <img
+            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${state.id}.svg`}
+            alt="img"
+          ></img>
+        </S.Img>
+        <S.AllInfoContainer>
+          <S.Name>
+            {state.name.slice(0, 1).toUpperCase() + state.name.slice(1)}
+            <S.FavoriteIcon onClick={() => setFav((prev) => !prev)} />
+          </S.Name>
+          <S.InfoContainer>
+            <S.Container>
+              <span>{state.height} </span>
+              <h3>Height</h3>
+              <span>{state.weight} </span>
+              <h3>Weight</h3>
+            </S.Container>
+            <S.Container>
+              <span>{state.base_experience} </span>
+              <h3> Base experience</h3>
+              <span>
+                {state.abilities.map((state) => `${state.ability.name}, `)}
+              </span>
+              <h3>Abilities</h3>
+            </S.Container>
+          </S.InfoContainer>
+        </S.AllInfoContainer>
+      </S.PokeinfoContainer>
       <Button>
         <Link to="/">Powrót do strony głównej</Link>
       </Button>

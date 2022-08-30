@@ -47,9 +47,10 @@ const S = {
 
 const SingleCard = ({ pokemonData, loading }) => {
   const navigate = useNavigate();
-  const navigateToPokeinfo = () => {
-    navigate("/pokeinfo");
+  const navigateToPokeinfo = (item) => {
+    navigate("/pokeinfo", { state: item });
   };
+
   return (
     <>
       {loading ? (
@@ -62,7 +63,7 @@ const SingleCard = ({ pokemonData, loading }) => {
             <S.SigleCard
               key={item.id}
               pokemonData={pokemonData}
-              onClick={() => navigateToPokeinfo()}
+              onClick={() => navigateToPokeinfo(item)}
             >
               <img
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${item.id}.svg`}
