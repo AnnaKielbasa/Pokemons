@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import SportsMartialArtsIcon from "@mui/icons-material/SportsMartialArts";
 import { useState } from "react";
 
 const S = {
@@ -24,11 +25,22 @@ const S = {
     flex-direction: column;
   `,
   Name: styled.h2`
-    text-align: center;
+    align-items: center;
+    justify-content: center;
     color: #50394c;
+    display: flex;
+    gap: 20px;
   `,
   FavoriteIcon: styled(FavoriteIcon)`
-    color: ${({ fav }) => (fav ? "green" : "lightGrey")};
+    color: ${({ fav }) => (fav ? "#ff0000" : "#f0f0f5")};
+    &:hover {
+      transform: scale(1.5);
+    }
+  `,
+  SportsMartialArtsIcon: styled(SportsMartialArtsIcon)`
+    &:hover {
+      transform: scale(1.5);
+    }
   `,
   InfoContainer: styled.div`
     display: flex;
@@ -60,7 +72,11 @@ const Pokeinfo = () => {
         <S.AllInfoContainer>
           <S.Name>
             {state.name.slice(0, 1).toUpperCase() + state.name.slice(1)}
-            <S.FavoriteIcon onClick={() => setFav((prev) => !prev)} />
+            <S.FavoriteIcon
+              fav={+fav}
+              onClick={() => setFav((prev) => !prev)}
+            />
+            <S.SportsMartialArtsIcon />
           </S.Name>
           <S.InfoContainer>
             <S.Container>
