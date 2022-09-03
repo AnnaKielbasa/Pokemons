@@ -1,6 +1,7 @@
 import { ThemeProvider } from "styled-components";
 import { useState } from "react";
 import GlobalStyle from "./globalStyles";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 // import { theme } from "./Theme";
 
@@ -20,15 +21,16 @@ const earthyTheme = {
 };
 
 function App() {
+  const client = new QueryClient();
   const [theme, setTheme] = useState("main");
   const isDarkTheme = theme === "earthy";
   return (
-    <>
+    <QueryClientProvider client={client}>
       <ThemeProvider theme={isDarkTheme ? earthyTheme : mainTheme}>
         <GlobalStyle />
         <Routing />
       </ThemeProvider>
-    </>
+    </QueryClientProvider>
   );
 }
 

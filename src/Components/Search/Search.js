@@ -16,17 +16,17 @@ const S = {
   `,
 };
 const Search = ({
-  pokemonData,
+  pokemons,
   searchValue,
   setSearchValue,
   setFilteredPokemons,
 }) => {
   useEffect(() => {
-    const filteredPokemonData = pokemonData.filter((item) =>
+    const filteredPokemonData = pokemons.filter((item) =>
       item.name.toLowerCase().includes(searchValue)
     );
     setFilteredPokemons(filteredPokemonData);
-  }, [searchValue]);
+  }, [searchValue, pokemons, setFilteredPokemons]);
 
   return (
     <>

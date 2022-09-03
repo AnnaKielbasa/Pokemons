@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import styled from "styled-components";
 import Pagination from "../PokemonList/Pagination";
-import SingleCard from "../PokemonList/SingleCard";
+import SinglePokemon from "../PokemonList/SinglePokemon";
 import Search from "../Search/Search";
 
 const S = {
@@ -15,63 +16,54 @@ const S = {
     grid-gap: 2rem;
   `,
 };
-const HomepageContent = () => {
-  const [loading, setLoading] = useState(true);
-  const [pokemonData, setPokemonData] = useState([]);
-  const [currentPageUrl, setCurrentPageUrl] = useState(
-    "https://pokeapi.co/api/v2/pokemon/?limit=151&offset=0"
+const getPokemons = async ({ queryKey }) => {
+  const { data } = await axios.get(
+    `https://pokeapi.co/api/v2/pokemon/?limit=151&offset=${queryKey[1]}`
   );
-  const [nextPageUrl, setNextPageUrl] = useState();
-  const [prevPageUrl, setPrevPageUrl] = useState();
+  return data;
+};
+const HomepageContent = () => {
+  const [page, setPage] = useState(0);
   const [searchValue, setSearchValue] = useState("");
   const [filteredPokemons, setFilteredPokemons] = useState([]);
+  const { isError, error, isLoading, data } = useQuery(
+    ["pokemons", page],
+    getPokemons
+  );
 
-  useEffect(() => {
-    setLoading(true);
-    axios.get(currentPageUrl).then((res) => {
-      setNextPageUrl(res.data.next);
-      setPrevPageUrl(res.data.previous);
-      getPokemonData(res.data.results);
-      setLoading(false);
-    });
-  }, [currentPageUrl]);
-  const getPokemonData = async (res) => {
-    res.map(async (item) => {
-      const result = await axios.get(item.url);
-      setPokemonData((state) => {
-        state = [...state, result.data];
-        return state;
-      });
-    });
-  };
-  function gotoNextPage() {
-    setPokemonData([]);
-    setCurrentPageUrl(nextPageUrl);
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
 
-  function gotoPrevPage() {
-    setPokemonData([]);
-    setCurrentPageUrl(prevPageUrl);
+  if (isError) {
+    return <div>Error: {error.message}</div>;
   }
+
+  const { results: pokemons } = data;
 
   const pokemonsToDisplay =
-    searchValue.length === 0 ? pokemonData : filteredPokemons;
+    searchValue.length === 0 ? pokemons : filteredPokemons;
 
   return (
     <>
       <Search
-        pokemonData={pokemonData}
+        pokemons={pokemons}
         searchValue={searchValue}
         setSearchValue={setSearchValue}
         setFilteredPokemons={setFilteredPokemons}
       />
       <S.Container>
-        <SingleCard pokemonData={pokemonsToDisplay} loading={loading} />
+        {pokemonsToDisplay.length === 0 ? (
+          <h1>Nie znaleziono pokemona</h1>
+        ) : (
+          pokemonsToDisplay
+            .slice(0, 15)
+            .map((pokemon) => <SinglePokemon key={pokemon.name} {...pokemon} />)
+        )}
       </S.Container>
-      <Pagination
-        gotoNextPage={nextPageUrl ? gotoNextPage : null}
-        gotoPrevPage={prevPageUrl ? gotoPrevPage : null}
-      />
+      {pokemonsToDisplay.length > 15 && (
+        <Pagination setPage={setPage} page={page} />
+      )}
     </>
   );
 };

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Button } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import SportsMartialArtsIcon from "@mui/icons-material/SportsMartialArts";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const S = {
   Header: styled.h1`
@@ -58,6 +58,19 @@ const S = {
 const Pokeinfo = () => {
   const { state } = useLocation();
   const [fav, setFav] = useState(false);
+
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    localStorage.setItem("items", JSON.stringify(items));
+  }, [items]);
+
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem("items"));
+    if (items) {
+      setItems(items);
+    }
+  }, []);
 
   return (
     <>
