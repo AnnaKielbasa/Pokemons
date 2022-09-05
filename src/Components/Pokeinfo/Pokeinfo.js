@@ -55,20 +55,21 @@ const S = {
     }
   `,
 };
+
 const Pokeinfo = () => {
   const { state } = useLocation();
   const [fav, setFav] = useState(false);
+  const [favs, setFavs] = useState([]);
 
-  const [items, setItems] = useState([]);
-
+  const handleSetFavs = () => {
+    const newFavs = [...new Set([...favs, state])];
+    localStorage.setItem("favs", JSON.stringify(newFavs));
+    setFavs(newFavs);
+  };
   useEffect(() => {
-    localStorage.setItem("items", JSON.stringify(items));
-  }, [items]);
-
-  useEffect(() => {
-    const items = JSON.parse(localStorage.getItem("items"));
-    if (items) {
-      setItems(items);
+    const data = localStorage.getItem("favs");
+    if (data) {
+      setFavs(JSON.parse(data));
     }
   }, []);
 
@@ -85,10 +86,7 @@ const Pokeinfo = () => {
         <S.AllInfoContainer>
           <S.Name>
             {state.name.slice(0, 1).toUpperCase() + state.name.slice(1)}
-            <S.FavoriteIcon
-              fav={+fav}
-              onClick={() => setFav((prev) => !prev)}
-            />
+            <S.FavoriteIcon fav={+fav} onClick={() => handleSetFavs()} />
             <S.SportsMartialArtsIcon />
           </S.Name>
           <S.InfoContainer>

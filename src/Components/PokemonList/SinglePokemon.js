@@ -29,7 +29,7 @@ const S = {
       color: #50394c;
     }
     &:hover {
-      transform: scale(1.025);
+      scale: 1.025;
     }
   `,
 
@@ -49,8 +49,8 @@ const S = {
 
 const SingleCard = ({ name, url }) => {
   const navigate = useNavigate();
-  const navigateToPokeinfo = (item) => {
-    navigate("/pokeinfo", { state: item });
+  const navigateToPokeinfo = (data) => {
+    navigate("/pokeinfo", { state: data });
   };
 
   const getPokemon = async (url) => {
