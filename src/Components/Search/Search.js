@@ -20,12 +20,15 @@ const Search = ({
   searchValue,
   setSearchValue,
   setFilteredPokemons,
+  setPage,
 }) => {
   useEffect(() => {
     const filteredPokemonData = pokemons.filter((item) =>
       item.name.toLowerCase().includes(searchValue)
     );
+
     setFilteredPokemons(filteredPokemonData);
+    setPage(0);
   }, [searchValue, pokemons, setFilteredPokemons]);
 
   return (

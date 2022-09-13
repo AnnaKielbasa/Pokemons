@@ -2,6 +2,7 @@ import { ThemeProvider } from "styled-components";
 import { useState } from "react";
 import GlobalStyle from "./globalStyles";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { FavProvider } from "./FavContext";
 
 // import { theme } from "./Theme";
 
@@ -21,14 +22,26 @@ const earthyTheme = {
 };
 
 function App() {
-  const client = new QueryClient();
+  const client = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: Infinity,
+        refetchOnMount: false,
+        refetchOnReconnect: false,
+        refetchOnWindowFocus: false,
+      },
+    },
+  });
   const [theme, setTheme] = useState("main");
   const isDarkTheme = theme === "earthy";
+
   return (
     <QueryClientProvider client={client}>
       <ThemeProvider theme={isDarkTheme ? earthyTheme : mainTheme}>
-        <GlobalStyle />
-        <Routing />
+        <FavProvider>
+          <GlobalStyle />
+          <Routing />
+        </FavProvider>
       </ThemeProvider>
     </QueryClientProvider>
   );

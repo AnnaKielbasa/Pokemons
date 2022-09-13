@@ -16,9 +16,9 @@ const S = {
     grid-gap: 2rem;
   `,
 };
-const getPokemons = async ({ queryKey }) => {
+const getPokemons = async () => {
   const { data } = await axios.get(
-    `https://pokeapi.co/api/v2/pokemon/?limit=151&offset=${queryKey[1]}`
+    `https://pokeapi.co/api/v2/pokemon/?limit=151`
   );
   return data;
 };
@@ -26,9 +26,14 @@ const HomepageContent = () => {
   const [page, setPage] = useState(0);
   const [searchValue, setSearchValue] = useState("");
   const [filteredPokemons, setFilteredPokemons] = useState([]);
+
   const { isError, error, isLoading, data } = useQuery(
-    ["pokemons", page],
-    getPokemons
+    ["pokemons"],
+    getPokemons,
+    {
+      keepPreviousData: true,
+      staleTime: Infinity,
+    }
   );
 
   if (isLoading) {
@@ -51,18 +56,19 @@ const HomepageContent = () => {
         searchValue={searchValue}
         setSearchValue={setSearchValue}
         setFilteredPokemons={setFilteredPokemons}
+        setPage={setPage}
       />
       <S.Container>
         {pokemonsToDisplay.length === 0 ? (
           <h1>Nie znaleziono pokemona</h1>
         ) : (
           pokemonsToDisplay
-            .slice(0, 15)
+            .slice(page, page + 15)
             .map((pokemon) => <SinglePokemon key={pokemon.name} {...pokemon} />)
         )}
       </S.Container>
       {pokemonsToDisplay.length > 15 && (
-        <Pagination setPage={setPage} page={page} />
+        <Pagination page={page} setPage={setPage} />
       )}
     </>
   );

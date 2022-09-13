@@ -11,13 +11,11 @@ const S = {
   `,
 };
 
-export default function Pagination({ setPage, page }) {
+export default function Pagination({ page, setPage }) {
   return (
     <S.Pagination>
       {page !== 0 ? (
-        <Button onClick={() => setPage((old) => Math.max(old - 15))}>
-          Previous
-        </Button>
+        <Button onClick={() => setPage((old) => old - 15)}>Previous</Button>
       ) : null}
       {page < 150 ? (
         <Button onClick={() => setPage((old) => old + 15)}>Next</Button>
