@@ -1,9 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
-
-// import { Box } from "@mui/material";
 import styled from "styled-components";
 
-// import { css } from "styled-components";
 const S = {
   Nav: styled.nav`
     display: flex;

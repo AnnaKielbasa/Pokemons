@@ -1,22 +1,23 @@
 import { Link } from "react-router-dom";
 import FavContext from "../../FavContext";
 import { useContext } from "react";
+import SingleCard from "../PokemonList/SingleCard";
+import styled from "styled-components";
 
 const Favs = () => {
   const { favs } = useContext(FavContext);
 
   return (
     <div>
-      {favs.length > 0 ? (
-        <div>{favs.length}</div>
-      ) : (
-        <div>Nie dodano żadnego pokemona do ulubionych</div>
-      )}
-      {favs?.map((item) => (
-        <h2 key={item.name}>{item.name}</h2>
-      ))}
-      {/* <SingleCard key={favs.name} /> */}
-
+      <S.Container>
+        {favs.length === 0 ? (
+          <div>Nie dodano żadnego pokemona do ulubionych</div>
+        ) : (
+          favs?.map((pokemon) => (
+            <SingleCard key={pokemon.name} data={pokemon} />
+          ))
+        )}
+      </S.Container>
       <button>
         <Link to="/">Powrót do strony głównej</Link>
       </button>
@@ -25,3 +26,14 @@ const Favs = () => {
 };
 
 export default Favs;
+
+const S = {
+  Container: styled.div`
+    width: 90%;
+    margin: auto;
+    padding-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 0.5fr));
+    grid-gap: 2rem;
+  `,
+};

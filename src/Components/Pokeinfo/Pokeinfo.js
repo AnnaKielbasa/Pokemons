@@ -18,9 +18,10 @@ const Pokeinfo = () => {
     navigate("/favs");
   };
 
-  const checkIfFav = favs.some((pokemon) => pokemon.id === state.id);
+  const checkiffav = favs?.some((pokemon) => pokemon.id === state.id);
+
   const handleClick = () => {
-    checkIfFav ? removeFavouritePokemon(state) : addFavouritePokemon(state);
+    checkiffav ? removeFavouritePokemon(state) : addFavouritePokemon(state);
   };
 
   return (
@@ -37,7 +38,7 @@ const Pokeinfo = () => {
           <S.Name>
             {state.name.slice(0, 1).toUpperCase() + state.name.slice(1)}
             <S.FavoriteIcon
-              checkIfFav={+checkIfFav}
+              checkiffav={+checkiffav}
               onClick={() => handleClick()}
             />
             <S.SportsMartialArtsIcon />
@@ -99,7 +100,7 @@ const S = {
     gap: 20px;
   `,
   FavoriteIcon: styled(FavoriteIcon)`
-    color: ${({ checkIfFav }) => (checkIfFav ? "#ff0000" : "#f0f0f5")};
+    color: ${({ checkiffav }) => (checkiffav ? "#ff0000" : "#f0f0f5")};
     &:hover {
       transform: scale(1.5);
     }

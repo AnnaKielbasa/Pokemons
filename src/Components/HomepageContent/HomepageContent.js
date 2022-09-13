@@ -6,17 +6,7 @@ import Pagination from "../PokemonList/Pagination";
 import SinglePokemon from "../PokemonList/SinglePokemon";
 import Search from "../Search/Search";
 
-const S = {
-  Container: styled.div`
-    width: 90%;
-    margin: auto;
-    padding-top: 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 0.5fr));
-    grid-gap: 2rem;
-  `,
-};
-const getPokemons = async () => {
+const getAllPokemons = async () => {
   const { data } = await axios.get(
     `https://pokeapi.co/api/v2/pokemon/?limit=151`
   );
@@ -29,7 +19,7 @@ const HomepageContent = () => {
 
   const { isError, error, isLoading, data } = useQuery(
     ["pokemons"],
-    getPokemons,
+    getAllPokemons,
     {
       keepPreviousData: true,
       staleTime: Infinity,
@@ -75,3 +65,14 @@ const HomepageContent = () => {
 };
 
 export default HomepageContent;
+
+const S = {
+  Container: styled.div`
+    width: 90%;
+    margin: auto;
+    padding-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 0.5fr));
+    grid-gap: 2rem;
+  `,
+};
