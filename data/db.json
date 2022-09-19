@@ -1,0 +1,53 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Anna",
+      "email": "interia@gma.com",
+      "password": "Anna123#",
+      "confirmedPassword": "Anna123#"
+    },
+    {
+      "id": 2,
+      "name": "Tomasz",
+      "email": "gacek@gmail.com",
+      "password": "Gacek123#",
+      "confirmedPassword": "Gacek123#"
+    },
+    {
+      "id": 3,
+      "name": "Lilia",
+      "email": "interia@gma.pc",
+      "password": "Lilia123$",
+      "confirmedPassword": "Lilia123$"
+    },
+    {
+      "id": 4,
+      "name": "Roza",
+      "email": "gdvv@gmail.com",
+      "password": "Roza123#",
+      "confirmedPassword": "Roza123#"
+    },
+    {
+      "id": 5,
+      "name": "Anna",
+      "email": "roza@gmail.com",
+      "password": "Roza098*",
+      "confirmedPassword": "Roza098*"
+    },
+    {
+      "id": "1196b470-373f-11ed-80e9-977326c28885",
+      "name": "Roza",
+      "email": "interia@gma.pc",
+      "password": "Pola098*",
+      "confirmedPassword": "Pola098*"
+    },
+    {
+      "id": "48e95800-3740-11ed-80e9-977326c28885",
+      "name": "Kwiat",
+      "email": "srat@gmail.com",
+      "password": "Titi098*",
+      "confirmedPassword": "Titi098*"
+    }
+  ]
+}

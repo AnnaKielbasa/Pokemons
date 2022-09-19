@@ -3,6 +3,9 @@ import { useState } from "react";
 import GlobalStyle from "./globalStyles";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { FavProvider } from "./FavContext";
+import { LoginProvider } from "./LoginContext";
+import { ArenaProvider } from "./ArenaContext";
+import { SnackbarProvider } from "notistack";
 
 // import { theme } from "./Theme";
 
@@ -37,12 +40,18 @@ function App() {
 
   return (
     <QueryClientProvider client={client}>
-      <ThemeProvider theme={isDarkTheme ? earthyTheme : mainTheme}>
-        <FavProvider>
-          <GlobalStyle />
-          <Routing />
-        </FavProvider>
-      </ThemeProvider>
+      <SnackbarProvider>
+        <ThemeProvider theme={isDarkTheme ? earthyTheme : mainTheme}>
+          <FavProvider>
+            <LoginProvider>
+              <ArenaProvider>
+                <GlobalStyle />
+                <Routing />
+              </ArenaProvider>
+            </LoginProvider>
+          </FavProvider>
+        </ThemeProvider>
+      </SnackbarProvider>
     </QueryClientProvider>
   );
 }

@@ -8,6 +8,7 @@ import Login from "./Components/Login/Login";
 import Edit from "./Components/Edit/Edit";
 import Error from "./Components/Error/Error";
 import Register from "./Components/Register/Register";
+import Logout from "./Components/Logout/Logout";
 
 const Routing = () => {
   return (
@@ -22,6 +23,7 @@ const Routing = () => {
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="edit" element={<Edit />} />
+        <Route path="logout" element={<Logout />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>

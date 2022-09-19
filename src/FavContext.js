@@ -27,6 +27,7 @@ export const FavProvider = ({ children }) => {
     setFavs(newFavouriteList);
     localStorage.setItem("favs", JSON.stringify(newFavouriteList));
   };
+
   return (
     <FavContext.Provider
       value={{

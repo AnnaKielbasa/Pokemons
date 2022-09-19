@@ -1,5 +1,7 @@
 import { Link, Outlet } from "react-router-dom";
 import styled from "styled-components";
+import LoginContext from "../../LoginContext";
+import { useContext } from "react";
 
 const S = {
   Nav: styled.nav`
@@ -27,6 +29,7 @@ const S = {
   `,
 };
 const Nav = () => {
+  const { isLoggedIn } = useContext(LoginContext);
   return (
     <div>
       <S.Nav>
@@ -37,10 +40,12 @@ const Nav = () => {
           <Link to="/login">Logowanie</Link>
           <Link to="/register">Rejestracja</Link>
         </S.Container>
-        <S.Container>
-          <Link to="/edit">Edit</Link>
-          <Link to="/">Logout</Link>
-        </S.Container>
+        {isLoggedIn ? (
+          <S.Container>
+            <Link to="/edit">Edit</Link>
+            <Link to="/logout">Logout</Link>
+          </S.Container>
+        ) : null}
       </S.Nav>
       <section>
         <Outlet />

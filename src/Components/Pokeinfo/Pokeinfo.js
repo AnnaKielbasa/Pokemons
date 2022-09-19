@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Button } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import SportsMartialArtsIcon from "@mui/icons-material/SportsMartialArts";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import FavContext from "../../FavContext";
 import { useContext } from "react";
 
@@ -13,10 +13,10 @@ const Pokeinfo = () => {
     useContext(FavContext);
   const { state } = useLocation();
 
-  const navigate = useNavigate();
-  const navigateToFavs = () => {
-    navigate("/favs");
-  };
+  // const navigate = useNavigate();
+  // const navigateToFavs = () => {
+  //   navigate("/favs");
+  // };
 
   const checkiffav = favs?.some((pokemon) => pokemon.id === state.id);
 
@@ -61,8 +61,14 @@ const Pokeinfo = () => {
           </S.InfoContainer>
         </S.AllInfoContainer>
       </S.PokeinfoContainer>
-      <Button onClick={() => navigateToFavs()}>
-        <Link to="/">Favs</Link>
+
+      <Button
+      // onClick={() => navigateToFavs()}
+      >
+        <Link to="/favs">Favs</Link>
+      </Button>
+      <Button>
+        <Link to="/arena">Arena</Link>
       </Button>
 
       <Button>
