@@ -12,6 +12,7 @@ const getAllPokemons = async () => {
   );
   return data;
 };
+
 const HomepageContent = () => {
   const [page, setPage] = useState(0);
   const [searchValue, setSearchValue] = useState("");

@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { FavProvider } from "./FavContext";
 import { LoginProvider } from "./LoginContext";
 import { ArenaProvider } from "./ArenaContext";
+import { ModifiedPokemonsContextProvider } from "./ModifiedPokemonsContext";
 import { SnackbarProvider } from "notistack";
 
 // import { theme } from "./Theme";
@@ -42,14 +43,16 @@ function App() {
     <QueryClientProvider client={client}>
       <SnackbarProvider>
         <ThemeProvider theme={isDarkTheme ? earthyTheme : mainTheme}>
-          <FavProvider>
-            <LoginProvider>
-              <ArenaProvider>
-                <GlobalStyle />
-                <Routing />
-              </ArenaProvider>
-            </LoginProvider>
-          </FavProvider>
+          <ModifiedPokemonsContextProvider>
+            <FavProvider>
+              <LoginProvider>
+                <ArenaProvider>
+                  <GlobalStyle />
+                  <Routing />
+                </ArenaProvider>
+              </LoginProvider>
+            </FavProvider>
+          </ModifiedPokemonsContextProvider>
         </ThemeProvider>
       </SnackbarProvider>
     </QueryClientProvider>

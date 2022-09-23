@@ -4,24 +4,32 @@ import styled from "styled-components";
 import { Button } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import SportsMartialArtsIcon from "@mui/icons-material/SportsMartialArts";
-// import { useNavigate } from "react-router-dom";
 import FavContext from "../../FavContext";
 import { useContext } from "react";
+import ArenaContext from "../../ArenaContext";
+import { useSnackbar } from "notistack";
 
 const Pokeinfo = () => {
   const { favs, addFavouritePokemon, removeFavouritePokemon } =
     useContext(FavContext);
+  const { arena, addPokemonToArena, removePokemonFromArena } =
+    useContext(ArenaContext);
   const { state } = useLocation();
-
-  // const navigate = useNavigate();
-  // const navigateToFavs = () => {
-  //   navigate("/favs");
-  // };
+  const { enqueueSnackbar } = useSnackbar();
 
   const checkiffav = favs?.some((pokemon) => pokemon.id === state.id);
-
-  const handleClick = () => {
+  const handleFavClick = () => {
     checkiffav ? removeFavouritePokemon(state) : addFavouritePokemon(state);
+  };
+
+  const isArenaFree = arena.length <= 2;
+  const checkifinarena = arena?.some((pokemon) => pokemon.id === state.id);
+  const handleArenaClick = () => {
+    isArenaFree
+      ? checkifinarena
+        ? removePokemonFromArena(state)
+        : addPokemonToArena(state)
+      : enqueueSnackbar("Arena jest pełna");
   };
 
   return (
@@ -37,11 +45,19 @@ const Pokeinfo = () => {
         <S.AllInfoContainer>
           <S.Name>
             {state.name.slice(0, 1).toUpperCase() + state.name.slice(1)}
-            <S.FavoriteIcon
-              checkiffav={+checkiffav}
-              onClick={() => handleClick()}
-            />
-            <S.SportsMartialArtsIcon />
+
+            <div>
+              <S.FavoriteIcon
+                checkiffav={+checkiffav}
+                onClick={() => handleFavClick()}
+              />
+            </div>
+            <div>
+              <S.SportsMartialArtsIcon
+                checkifinarena={+checkifinarena}
+                onClick={() => handleArenaClick()}
+              />
+            </div>
           </S.Name>
           <S.InfoContainer>
             <S.Container>
@@ -62,9 +78,7 @@ const Pokeinfo = () => {
         </S.AllInfoContainer>
       </S.PokeinfoContainer>
 
-      <Button
-      // onClick={() => navigateToFavs()}
-      >
+      <Button>
         <Link to="/favs">Favs</Link>
       </Button>
       <Button>
@@ -112,6 +126,7 @@ const S = {
     }
   `,
   SportsMartialArtsIcon: styled(SportsMartialArtsIcon)`
+    color: ${({ checkifinarena }) => (checkifinarena ? "#ff0000" : "#f0f0f5")};
     &:hover {
       transform: scale(1.5);
     }

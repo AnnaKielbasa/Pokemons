@@ -49,5 +49,49 @@
       "password": "Titi098*",
       "confirmedPassword": "Titi098*"
     }
+  ],
+  "pokemonstats": [
+    {
+      "id": 3,
+      "name": "venusaur",
+      "base_experience": 303,
+      "fightsWon": 6,
+      "fightsLost": 0
+    },
+    {
+      "id": 4,
+      "name": "charmander",
+      "base_experience": 62,
+      "fightsWon": 1,
+      "fightsLost": 4
+    },
+    {
+      "id": 1,
+      "name": "bulbasaur",
+      "base_experience": 64,
+      "fightsWon": 0,
+      "fightsLost": 7
+    },
+    {
+      "id": 7,
+      "name": "squirtle",
+      "base_experience": 123,
+      "fightsWon": 11,
+      "fightsLost": 0
+    },
+    {
+      "id": 14,
+      "name": "kakuna",
+      "base_experience": 82,
+      "fightsWon": 1,
+      "fightsLost": 0
+    },
+    {
+      "id": 10,
+      "name": "caterpie",
+      "base_experience": 39,
+      "fightsWon": 0,
+      "fightsLost": 1
+    }
   ]
 }

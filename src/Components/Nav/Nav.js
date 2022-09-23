@@ -3,31 +3,6 @@ import styled from "styled-components";
 import LoginContext from "../../LoginContext";
 import { useContext } from "react";
 
-const S = {
-  Nav: styled.nav`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 1rem 0;
-    padding: 1rem 2rem;
-    background-color: #50394c;
-  `,
-  Logo: styled.div`
-    color: #ffef96;
-  `,
-  Container: styled.div`
-    display: flex;
-    gap: 1rem;
-    > a {
-      text-decoration: none;
-      color: #ffef96;
-
-      &:hover {
-        background-color: #b2b2b2;
-      }
-    }
-  `,
-};
 const Nav = () => {
   const { isLoggedIn } = useContext(LoginContext);
   return (
@@ -55,3 +30,29 @@ const Nav = () => {
 };
 
 export default Nav;
+
+const S = {
+  Nav: styled.nav`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 0;
+    padding: 1rem 2rem;
+    background-color: #50394c;
+  `,
+  Logo: styled.div`
+    color: #ffef96;
+  `,
+  Container: styled.div`
+    display: flex;
+    gap: 1rem;
+    > a {
+      text-decoration: none;
+      color: #ffef96;
+
+      &:hover {
+        background-color: #b2b2b2;
+      }
+    }
+  `,
+};

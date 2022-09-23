@@ -1,16 +1,6 @@
 import { Button } from "@mui/material";
 import styled from "styled-components";
 
-const S = {
-  Pagination: styled.div`
-    display: flex;
-    background-color: #ffef96;
-    justify-content: center;
-    align-items: center;
-    margin-top: 2rem;
-  `,
-};
-
 export default function Pagination({ page, setPage }) {
   return (
     <S.Pagination>
@@ -23,3 +13,13 @@ export default function Pagination({ page, setPage }) {
     </S.Pagination>
   );
 }
+
+const S = {
+  Pagination: styled.div`
+    display: flex;
+    background-color: #ffef96;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+  `,
+};
