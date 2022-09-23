@@ -40,7 +40,7 @@ const Login = () => {
     <div>
       {isLoggedIn ? (
         <Button>
-          <Link to="/edit">Przejdź do edycji pokemonów</Link>
+          <Link to="/edit">Jesteś zalogowany.Przejdź do edycji pokemonów</Link>
         </Button>
       ) : (
         <>

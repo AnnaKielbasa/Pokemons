@@ -11,14 +11,14 @@ const SingleCard = ({ data }) => {
     navigate("/pokeinfo", { state: data });
   };
   const { modifiedPokemons } = useContext(ModifiedPokemonsContext);
-
+  // console.log({ modifiedPokemons });
   // useEffect(() => {
   //   if (modifiedPokemons?.filter((item) => item.name === data.name)) {
-  //     const base_experience = modifiedPokemons.map(
-  //       (item) => item.base_experience
+  //     // const base_experience = modifiedPokemons.map(
+  //     //   (item) => item.base_experience
 
-  //     );
-
+  //     const test = modifiedPokemons?.filter((item) => item.name === data.name);
+  //     console.log({ test, modifiedPokemons });
   //   }
   // }, []);
 

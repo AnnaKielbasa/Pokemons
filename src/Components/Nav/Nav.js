@@ -39,6 +39,7 @@ const S = {
     margin: 1rem 0;
     padding: 1rem 2rem;
     background-color: #50394c;
+    font-size: 1.25rem;
   `,
   Logo: styled.div`
     color: #ffef96;

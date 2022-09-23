@@ -22,7 +22,7 @@ const Pokeinfo = () => {
     checkiffav ? removeFavouritePokemon(state) : addFavouritePokemon(state);
   };
 
-  const isArenaFree = arena.length <= 2;
+  const isArenaFree = arena.length < 2;
   const checkifinarena = arena?.some((pokemon) => pokemon.id === state.id);
   const handleArenaClick = () => {
     isArenaFree

@@ -1,19 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import SingleCard from "./SingleCard";
+import useFetchSingle from "../../FetchData/useFetchSingle";
 
 const SinglePokemon = ({ name, url }) => {
-  const getSinglePokemon = async (url) => {
-    const { data } = await axios.get(url);
-    return data;
-  };
-  const { data, isLoading, isError, error } = useQuery(
-    [`pokemon${name}`],
-    () => getSinglePokemon(url),
-    {
-      keepPreviousData: true,
-    }
-  );
+  const { isError, error, isLoading, data } = useFetchSingle({ name, url });
 
   if (isLoading) {
     return <div>Loading...</div>;

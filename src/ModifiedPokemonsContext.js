@@ -19,8 +19,8 @@ export const ModifiedPokemonsContextProvider = ({ children }) => {
     if (data) {
       setModifiedPokemons(data);
     }
-  }, [data]);
-
+  }, []);
+  // console.log({ modifiedPokemons });
   const addNewWinnerToStats = async (winner) => {
     const winnerNew = {
       id: winner?.id,
@@ -30,10 +30,9 @@ export const ModifiedPokemonsContextProvider = ({ children }) => {
       fightsLost: 0,
     };
 
-    const response = await axios.post(
-      "http://localhost:3500/pokemonstats/",
-      winnerNew
-    );
+    const response = await axios.post(API_URL, winnerNew);
+
+    // setModifiedPokemons([...modifiedPokemons, winnerNew]);
     return response.data;
   };
   const addWinnerToStats = async (winner) => {
@@ -50,6 +49,7 @@ export const ModifiedPokemonsContextProvider = ({ children }) => {
       `http://localhost:3500/pokemonstats/${winner.id}`,
       winnerExisting
     );
+    // setModifiedPokemons([...modifiedPokemons, winnerExisting])
     return response.data;
   };
   const addNewLoserToStats = async (loser) => {
@@ -61,15 +61,14 @@ export const ModifiedPokemonsContextProvider = ({ children }) => {
       fightsLost: 1,
     };
 
-    const response = await axios.post(
-      "http://localhost:3500/pokemonstats",
-      loserNew
-    );
+    const response = await axios.post(API_URL, loserNew);
+    console.log({ modifiedPokemons });
+    // setModifiedPokemons([...modifiedPokemons, loserNew]);
     return response.data;
   };
   const addLoserToStats = async (loser) => {
     const findId = modifiedPokemons?.filter((item) => item.id === loser?.id);
-    console.log({ findId });
+
     const loserExisting = {
       id: loser?.id,
       name: loser?.name,
@@ -82,6 +81,7 @@ export const ModifiedPokemonsContextProvider = ({ children }) => {
       `http://localhost:3500/pokemonstats/${loser.id}`,
       loserExisting
     );
+    // setModifiedPokemons([...modifiedPokemons, loserExisting]);
     return response.data;
   };
 
@@ -89,7 +89,6 @@ export const ModifiedPokemonsContextProvider = ({ children }) => {
     <ModifiedPokemonsContext.Provider
       value={{
         modifiedPokemons,
-        // addModifiedPokemon,
         addNewWinnerToStats,
         addNewLoserToStats,
         addLoserToStats,

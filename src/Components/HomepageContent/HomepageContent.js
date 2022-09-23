@@ -1,31 +1,15 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import styled from "styled-components";
 import Pagination from "../PokemonList/Pagination";
 import SinglePokemon from "../PokemonList/SinglePokemon";
 import Search from "../Search/Search";
-
-const getAllPokemons = async () => {
-  const { data } = await axios.get(
-    `https://pokeapi.co/api/v2/pokemon/?limit=151`
-  );
-  return data;
-};
+import useFetchAll from "../../useFetchAll";
 
 const HomepageContent = () => {
   const [page, setPage] = useState(0);
   const [searchValue, setSearchValue] = useState("");
   const [filteredPokemons, setFilteredPokemons] = useState([]);
-
-  const { isError, error, isLoading, data } = useQuery(
-    ["pokemons"],
-    getAllPokemons,
-    {
-      keepPreviousData: true,
-      staleTime: Infinity,
-    }
-  );
+  const { isError, error, isLoading, data } = useFetchAll();
 
   if (isLoading) {
     return <div>Loading...</div>;

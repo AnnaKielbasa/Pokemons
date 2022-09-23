@@ -48,50 +48,164 @@
       "email": "srat@gmail.com",
       "password": "Titi098*",
       "confirmedPassword": "Titi098*"
+    },
+    {
+      "id": "fcd58680-3b83-11ed-8a97-a75e0771ff1c",
+      "name": "Lilia",
+      "email": "abc@gamil.com",
+      "password": "Abcd098*",
+      "confirmedPassword": "Abcd098*"
+    },
+    {
+      "id": "4ae5f620-3b84-11ed-9663-2f4d0bceee4e",
+      "name": "Lilia",
+      "email": "abc@gamil.com",
+      "password": "Pola678*",
+      "confirmedPassword": "Pola678*"
+    },
+    {
+      "id": "76be4c40-3b87-11ed-a99d-6394333db1b0",
+      "name": "Anna",
+      "email": "abc@gamil.com",
+      "password": "Hela098*",
+      "confirmedPassword": "Hela098*"
     }
   ],
   "pokemonstats": [
-    {
-      "id": 3,
-      "name": "venusaur",
-      "base_experience": 303,
-      "fightsWon": 6,
-      "fightsLost": 0
-    },
-    {
-      "id": 4,
-      "name": "charmander",
-      "base_experience": 62,
-      "fightsWon": 1,
-      "fightsLost": 4
-    },
-    {
-      "id": 1,
-      "name": "bulbasaur",
-      "base_experience": 64,
-      "fightsWon": 0,
-      "fightsLost": 7
-    },
-    {
-      "id": 7,
-      "name": "squirtle",
-      "base_experience": 123,
-      "fightsWon": 11,
-      "fightsLost": 0
-    },
-    {
-      "id": 14,
-      "name": "kakuna",
-      "base_experience": 82,
-      "fightsWon": 1,
-      "fightsLost": 0
-    },
     {
       "id": 10,
       "name": "caterpie",
       "base_experience": 39,
       "fightsWon": 0,
       "fightsLost": 1
+    },
+    {
+      "id": 2,
+      "name": "ivysaur",
+      "base_experience": 162,
+      "fightsWon": 2,
+      "fightsLost": 0
+    },
+    {
+      "id": 15,
+      "name": "beedrill",
+      "base_experience": 188,
+      "fightsWon": 1,
+      "fightsLost": 0
+    },
+    {
+      "id": 8,
+      "name": "wartortle",
+      "base_experience": 142,
+      "fightsWon": 0,
+      "fightsLost": 1
+    },
+    {
+      "id": 4,
+      "name": "charmander",
+      "base_experience": 72,
+      "fightsWon": 1,
+      "fightsLost": 0
+    },
+    {
+      "id": 1,
+      "name": "bulbasaur",
+      "base_experience": 64,
+      "fightsWon": 0,
+      "fightsLost": 1
+    },
+    {
+      "id": "4ff6a310-3b8b-11ed-a7bd-e1084f8685e5",
+      "name": "ivysaur",
+      "height": 10,
+      "weight": 130,
+      "abilities": "overgrow"
+    },
+    {
+      "id": "15637320-3b8d-11ed-a7bd-e1084f8685e5",
+      "name": "ivysaur",
+      "height": 10,
+      "weight": 130,
+      "abilities": "overgrow"
+    },
+    {
+      "name": "ivysaur",
+      "height": 10,
+      "weight": 130,
+      "abilities": "overgrow",
+      "id": 16
+    },
+    {
+      "name": "bulbasaur",
+      "height": 7,
+      "weight": 69,
+      "abilities": [
+        "overgrow",
+        "chlorophyll"
+      ],
+      "id": 17
+    },
+    {
+      "name": "bulbasaur",
+      "height": 7,
+      "weight": 69,
+      "abilities": "",
+      "id": 18
+    },
+    {
+      "name": "ivysaur",
+      "height": 10,
+      "weight": 130,
+      "abilities": "",
+      "id": 19
+    },
+    {
+      "name": "bulbasaur",
+      "height": 7,
+      "weight": 69,
+      "abilities": "",
+      "id": 20
+    },
+    {
+      "name": "bulbasaur",
+      "height": 7,
+      "weight": 69,
+      "abilities": "",
+      "id": 21
+    },
+    {
+      "name": "bulbasaur",
+      "height": 7,
+      "weight": 69,
+      "abilities": [
+        "overgrow",
+        "chlorophyll"
+      ],
+      "id": 22
+    },
+    {
+      "name": "ivysaur",
+      "height": 10,
+      "weight": 130,
+      "abilities": [
+        "overgrow",
+        "chlorophyll"
+      ],
+      "id": 23
+    },
+    {
+      "name": "ivysaur",
+      "height": 10,
+      "weight": 130,
+      "abilities": "",
+      "id": 24
+    },
+    {
+      "name": "ivysaur",
+      "height": 10,
+      "weight": 130,
+      "abilities": "",
+      "id": 25
     }
   ]
 }

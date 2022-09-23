@@ -3,10 +3,10 @@ import styled from "styled-components";
 import { Button } from "@mui/material";
 import { useContext } from "react";
 import ArenaContext from "../../ArenaContext";
-import DeleteIcon from "@mui/icons-material/Delete";
 import { useState } from "react";
 import { useSnackbar } from "notistack";
 import ModifiedPokemonsContext from "../../ModifiedPokemonsContext";
+import ArenaCard from "./ArenaCard";
 
 const Arena = () => {
   const { arena, removePokemonFromArena, setArena } = useContext(ArenaContext);
@@ -20,6 +20,7 @@ const Arena = () => {
   const { enqueueSnackbar } = useSnackbar();
 
   const [isFigthOver, setIsFigthOver] = useState(false);
+  const [loser, setLoser] = useState([]);
 
   const handleDeletePokemon = (pokemon) => {
     removePokemonFromArena(pokemon);
@@ -39,6 +40,7 @@ const Arena = () => {
     const winner = checkStrength[0] > checkStrength[1] ? arena[0] : arena[1];
 
     const loser = checkStrength[0] < checkStrength[1] ? arena[0] : arena[1];
+    setLoser(loser);
 
     const checkIfWinnerInStats = modifiedPokemons?.some(
       (item) => item.name === winner?.name
@@ -61,57 +63,51 @@ const Arena = () => {
 
   return (
     <>
-      <h1>Arena</h1>
+      <S.Header>Arena</S.Header>
       <S.Container>
-        {arena.length === 0 ? (
-          <S.PlaceholderContainer>
-            <S.PokemonPlaceholder>Miejsce na Pokemona</S.PokemonPlaceholder>
-            <S.PokemonPlaceholder>Miejsce na Pokemona</S.PokemonPlaceholder>
-          </S.PlaceholderContainer>
-        ) : (
-          <S.PlaceholderContainer>
-            {arena?.map((pokemon) => (
-              <S.PokemonPlaceholder key={pokemon.name}>
-                <S.DeleteIcon onClick={() => handleDeletePokemon(pokemon)} />
-                <h2>
-                  {pokemon.name.slice(0, 1).toUpperCase() +
-                    pokemon.name.slice(1)}
-                </h2>
-                <img
-                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg`}
-                  alt="img"
-                ></img>
-
-                <S.StatsContainer>
-                  <S.InfoContainer>
-                    <span>{pokemon.base_experience} </span>
-                    <h3> Base experience</h3>
-                  </S.InfoContainer>
-                  <S.InfoContainer>
-                    <span>{pokemon.weight} </span>
-                    <h3>Weight</h3>
-                  </S.InfoContainer>
-                </S.StatsContainer>
-              </S.PokemonPlaceholder>
-            ))}
-          </S.PlaceholderContainer>
-        )}
+        <S.PlaceholderContainer>
+          <S.PokemonPlaceholder>
+            {arena[0] ? (
+              <ArenaCard
+                handleDeletePokemon={handleDeletePokemon}
+                pokemon={arena[0]}
+                loser={loser}
+              />
+            ) : (
+              <span>Miejsce na Pokemona</span>
+            )}
+          </S.PokemonPlaceholder>
+          <S.PokemonPlaceholder>
+            {arena[1] ? (
+              <ArenaCard
+                handleDeletePokemon={handleDeletePokemon}
+                pokemon={arena[1]}
+                loser={loser}
+              />
+            ) : (
+              <span>Miejsce na Pokemona</span>
+            )}
+          </S.PokemonPlaceholder>
+        </S.PlaceholderContainer>
       </S.Container>
-      <Button
-        onClick={() => handleFight()}
-        disabled={arena.length !== 2 || isFigthOver}
-      >
-        Walcz!
-      </Button>
-      {isFigthOver ? (
-        <Button onClick={() => handleDeleteAllPokemons()}>
-          <Link to="/">Opuść arenę</Link>
+      <S.ButtonContainer>
+        <Button
+          onClick={() => handleFight()}
+          disabled={arena.length !== 2 || isFigthOver}
+        >
+          Walcz!
         </Button>
-      ) : (
-        <Button>
-          <Link to="/">Powrót do strony głównej</Link>
-        </Button>
-      )}
+
+        {isFigthOver ? (
+          <Button onClick={() => handleDeleteAllPokemons()}>
+            <Link to="/">Opuść arenę</Link>
+          </Button>
+        ) : (
+          <Button>
+            <Link to="/">Powrót do strony głównej</Link>
+          </Button>
+        )}
+      </S.ButtonContainer>
     </>
   );
 };
@@ -119,6 +115,10 @@ const Arena = () => {
 export default Arena;
 
 const S = {
+  Header: styled.div`
+    text-align: center;
+    font-size: 2rem;
+  `,
   Container: styled.div`
     width: 90%;
     margin: auto;
@@ -144,23 +144,9 @@ const S = {
       max-height: 200px;
     }
   `,
-  StatsContainer: styled.div`
+  ButtonContainer: styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
-  `,
-  InfoContainer: styled.div`
-    display: flex;
-    flex-direction: column;
-    > span {
-      color: #50394c;
-    }
-  `,
-  DeleteIcon: styled(DeleteIcon)`
-    color: #50394c;
-    &:hover {
-      transform: scale(1.5);
-    }
   `,
 };

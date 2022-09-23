@@ -4,6 +4,7 @@ import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { v1 } from "uuid";
+import styled from "styled-components";
 
 const Register = () => {
   const API_URL = "http://localhost:3500/users";
@@ -39,21 +40,21 @@ const Register = () => {
         validationSchema={userSchema}
         onSubmit={handleSubmit}
       >
-        <Form>
-          <Field type="text" name="name" placeholder="Imię..." />
+        <S.Form>
+          <S.Field type="text" name="name" placeholder="Imię..." />
           <ErrorMessage name="name" />
-          <Field type="email" name="email" placeholder="Email..." />
+          <S.Field type="email" name="email" placeholder="Email..." />
           <ErrorMessage name="email" />
-          <Field type="password" name="password" placeholder="Hasło..." />
+          <S.Field type="password" name="password" placeholder="Hasło..." />
           <ErrorMessage name="password" />
-          <Field
+          <S.Field
             type="password"
             name="confirmedPassword"
             placeholder="Powtórz hasło..."
           />
-          <ErrorMessage name="repeatedPassword" />
-          <button type="submit">Submit</button>
-        </Form>
+          <ErrorMessage name="confirmedPassword" />
+          <S.Button type="submit">Zarejestruj się</S.Button>
+        </S.Form>
       </Formik>
 
       <Button>
@@ -64,3 +65,20 @@ const Register = () => {
 };
 
 export default Register;
+
+const S = {
+  Form: styled(Form)`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  `,
+  Field: styled(Field)`
+    max-width: 300px;
+    font-size: 1.5rem;
+  `,
+  Button: styled(Button)`
+    max-width: 300px;
+  `,
+};
