@@ -1,14 +1,21 @@
 import useFetchSingle from "../../FetchData/useFetchSingle";
+import axios from "axios";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { pokemonSchema } from "../../Validations/PokemonValidation";
-import styled from "styled-components";
-import { Button } from "@mui/material";
-import axios from "axios";
+import { useContext } from "react";
+import ModifiedPokemonsContext from "../../Context/ModifiedPokemonsContext";
 import { v1 } from "uuid";
+import { useSnackbar } from "notistack";
+import { Button } from "@mui/material";
+import styled from "styled-components";
 
 const EditForm = ({ name, url }) => {
   const API_URL = "http://localhost:3500/pokemonstats";
   const { isError, error, isLoading, data } = useFetchSingle({ name, url });
+  const { modifiedPokemons, setModifiedPokemons } = useContext(
+    ModifiedPokemonsContext
+  );
+  const { enqueueSnackbar } = useSnackbar();
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -19,36 +26,30 @@ const EditForm = ({ name, url }) => {
 
   let submitAction;
   const handleCreateNew = async (values) => {
-    try {
-      const response = await axios.post(API_URL, {
-        id: v1(),
-        name: values.name,
-        height: values.height,
-        weight: values.weight,
-        experience: values.base_experience,
-        abilities: values.abilities,
-      });
-      const data = await response.data;
-      console.log(data);
-    } catch (error) {
-      console.log(error);
+    const response = await axios.post(API_URL, {
+      id: v1(),
+      name: values.name,
+      height: values.height,
+      weight: values.weight,
+      experience: values.base_experience,
+      abilities: values.abilities,
+    });
+    if (response && response.data) {
+      setModifiedPokemons([...modifiedPokemons, response.data]);
     }
   };
 
   const handleEdit = async (values) => {
-    try {
-      const response = await axios.post(API_URL, {
-        id: values.id,
-        name: values.name,
-        height: values.height,
-        weight: values.weight,
-        experience: values.base_experience,
-        abilities: values.abilities,
-      });
-      const data = await response.data;
-      console.log(data);
-    } catch (error) {
-      console.log(error);
+    const response = await axios.post(API_URL, {
+      id: values.id,
+      name: values.name,
+      height: values.height,
+      weight: values.weight,
+      experience: values.base_experience,
+      abilities: values.abilities,
+    });
+    if (response && response.data) {
+      setModifiedPokemons([...modifiedPokemons, response]);
     }
   };
   return (
@@ -65,8 +66,10 @@ const EditForm = ({ name, url }) => {
         onSubmit={(values) => {
           if (submitAction === "edit") {
             handleEdit(values);
+            enqueueSnackbar("Edytowano pokemona");
           } else {
             handleCreateNew(values);
+            enqueueSnackbar("Zapisano nowego pokemona");
           }
         }}
       >

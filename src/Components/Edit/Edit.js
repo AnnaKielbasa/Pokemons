@@ -1,9 +1,9 @@
 import { useState } from "react";
-import useFetchAll from "../../useFetchAll";
+import EditForm from "./EditForm";
+import useFetchAll from "../../FetchData/useFetchAll";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import styled from "styled-components";
-import EditForm from "./EditForm";
 
 const Edit = () => {
   const [pokemonToEdit, setPokemonToEdit] = useState();
@@ -26,7 +26,7 @@ const Edit = () => {
     <div>
       <S.Autocomplete
         onChange={(_, value) => handleChange(value)}
-        id="controllable-states-demo"
+        id="autocomplete"
         options={pokemons.map((item) => item.name)}
         renderInput={(params) => (
           <TextField {...params} label="Wybierz pokemona do edycji" />
@@ -45,5 +45,6 @@ export default Edit;
 const S = {
   Autocomplete: styled(Autocomplete)`
     width: 300px;
+    margin: 0 auto;
   `,
 };

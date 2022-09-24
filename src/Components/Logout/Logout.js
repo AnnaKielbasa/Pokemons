@@ -1,8 +1,8 @@
-import LoginContext from "../../LoginContext";
+import LoginContext from "../../Context/LoginContext";
 import { useContext } from "react";
-import { Button } from "@mui/material";
 import { useSnackbar } from "notistack";
 import { useNavigate } from "react-router-dom";
+import { Button } from "@mui/material";
 
 const Logout = () => {
   const { isLoggedIn, setIsLoggedIn, logoutUser } = useContext(LoginContext);

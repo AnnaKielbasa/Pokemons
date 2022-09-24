@@ -1,4 +1,6 @@
-export const theme = {
+import { createTheme } from "@mui/material/styles";
+
+export const theme = createTheme({
   main: {
     yellow: "#ffef96",
     dark: "#50394c",
@@ -13,4 +15,4 @@ export const theme = {
     darkGreen: "#405d27",
     brown: "#c1946a",
   },
-};
+});

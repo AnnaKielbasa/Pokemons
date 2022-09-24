@@ -1,9 +1,9 @@
+import axios from "axios";
 import { userSchema } from "../../Validations/UserValidation";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { v1 } from "uuid";
+import { Button } from "@mui/material";
 import styled from "styled-components";
 
 const Register = () => {

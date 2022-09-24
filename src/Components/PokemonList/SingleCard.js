@@ -1,26 +1,13 @@
-import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import ModifiedPokemonsContext from "../../ModifiedPokemonsContext";
-import { useContext } from "react";
-import { useEffect } from "react";
+import styled from "styled-components";
 
 const SingleCard = ({ data }) => {
   const { id, height, weight, abilities, base_experience, name } = data;
+
   const navigate = useNavigate();
   const navigateToPokeinfo = (data) => {
     navigate("/pokeinfo", { state: data });
   };
-  const { modifiedPokemons } = useContext(ModifiedPokemonsContext);
-  // console.log({ modifiedPokemons });
-  // useEffect(() => {
-  //   if (modifiedPokemons?.filter((item) => item.name === data.name)) {
-  //     // const base_experience = modifiedPokemons.map(
-  //     //   (item) => item.base_experience
-
-  //     const test = modifiedPokemons?.filter((item) => item.name === data.name);
-  //     console.log({ test, modifiedPokemons });
-  //   }
-  // }, []);
 
   return (
     <S.SigleCard onClick={() => navigateToPokeinfo(data)}>

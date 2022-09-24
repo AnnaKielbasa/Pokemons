@@ -2,13 +2,13 @@ import { ThemeProvider } from "styled-components";
 import { useState } from "react";
 import GlobalStyle from "./globalStyles";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { FavProvider } from "./FavContext";
-import { LoginProvider } from "./LoginContext";
-import { ArenaProvider } from "./ArenaContext";
-import { ModifiedPokemonsContextProvider } from "./ModifiedPokemonsContext";
+import { FavProvider } from "./Context/FavContext";
+import { LoginProvider } from "./Context/LoginContext";
+import { ArenaProvider } from "./Context/ArenaContext";
+import { ModifiedPokemonsContextProvider } from "./Context/ModifiedPokemonsContext";
 import { SnackbarProvider } from "notistack";
 
-// import { theme } from "./Theme";
+import { theme } from "./Theme";
 
 import Routing from "./Routing";
 

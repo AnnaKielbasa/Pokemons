@@ -1,12 +1,12 @@
+import ArenaCard from "./ArenaCard";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { Button } from "@mui/material";
 import { useContext } from "react";
-import ArenaContext from "../../ArenaContext";
+import ModifiedPokemonsContext from "../../Context/ModifiedPokemonsContext";
+import ArenaContext from "../../Context/ArenaContext";
 import { useState } from "react";
 import { useSnackbar } from "notistack";
-import ModifiedPokemonsContext from "../../ModifiedPokemonsContext";
-import ArenaCard from "./ArenaCard";
+import { Button } from "@mui/material";
+import styled from "styled-components";
 
 const Arena = () => {
   const { arena, removePokemonFromArena, setArena } = useContext(ArenaContext);

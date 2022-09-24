@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import styled from "styled-components";
-import { Button } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import SportsMartialArtsIcon from "@mui/icons-material/SportsMartialArts";
-import FavContext from "../../FavContext";
+import FavContext from "../../Context/FavContext";
 import { useContext } from "react";
-import ArenaContext from "../../ArenaContext";
+import ArenaContext from "../../Context/ArenaContext";
 import { useSnackbar } from "notistack";
+import { Button } from "@mui/material";
+import styled from "styled-components";
 
 const Pokeinfo = () => {
   const { favs, addFavouritePokemon, removeFavouritePokemon } =

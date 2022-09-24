@@ -17,7 +17,7 @@ const Search = ({
 
     setFilteredPokemons(filteredPokemonData);
     setPage(0);
-  }, [searchValue, pokemons, setFilteredPokemons]);
+  }, [searchValue, pokemons, setFilteredPokemons, setPage]);
 
   return (
     <>

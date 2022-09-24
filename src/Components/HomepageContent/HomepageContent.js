@@ -1,9 +1,9 @@
-import { useState } from "react";
-import styled from "styled-components";
 import Pagination from "../PokemonList/Pagination";
 import SinglePokemon from "../PokemonList/SinglePokemon";
 import Search from "../Search/Search";
-import useFetchAll from "../../useFetchAll";
+import { useState } from "react";
+import useFetchAll from "../../FetchData/useFetchAll";
+import styled from "styled-components";
 
 const HomepageContent = () => {
   const [page, setPage] = useState(0);

@@ -1,14 +1,16 @@
 import { Link, Outlet } from "react-router-dom";
-import styled from "styled-components";
-import LoginContext from "../../LoginContext";
+import LoginContext from "../../Context/LoginContext";
 import { useContext } from "react";
+import styled from "styled-components";
 
 const Nav = () => {
   const { isLoggedIn } = useContext(LoginContext);
   return (
     <div>
       <S.Nav>
-        <S.Logo>Pokedex</S.Logo>
+        <S.Logo>
+          <Link to="/">Pokedex</Link>
+        </S.Logo>
         <S.Container>
           <Link to="/favs">Ulubione</Link>
           <Link to="/arena">Arena</Link>
@@ -43,6 +45,12 @@ const S = {
   `,
   Logo: styled.div`
     color: #ffef96;
+    > a {
+      text-decoration: none;
+      color: #ffef96;
+      &:hover {
+        background-color: #b2b2b2;
+      }
   `,
   Container: styled.div`
     display: flex;

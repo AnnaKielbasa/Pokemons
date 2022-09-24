@@ -5,10 +5,10 @@ export default function Pagination({ page, setPage }) {
   return (
     <S.Pagination>
       {page !== 0 ? (
-        <Button onClick={() => setPage((old) => old - 15)}>Previous</Button>
+        <S.Button onClick={() => setPage((old) => old - 15)}>Previous</S.Button>
       ) : null}
       {page < 150 ? (
-        <Button onClick={() => setPage((old) => old + 15)}>Next</Button>
+        <S.Button onClick={() => setPage((old) => old + 15)}>Next</S.Button>
       ) : null}
     </S.Pagination>
   );
@@ -17,9 +17,14 @@ export default function Pagination({ page, setPage }) {
 const S = {
   Pagination: styled.div`
     display: flex;
-    background-color: #ffef96;
     justify-content: center;
     align-items: center;
     margin-top: 2rem;
+    gap: 1rem;
+  `,
+  Button: styled(Button)`
+    && {
+      background-color: #ffef96;
+    }
   `,
 };

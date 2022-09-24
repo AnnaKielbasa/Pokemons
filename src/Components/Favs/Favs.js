@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
-import FavContext from "../../FavContext";
-import { useContext } from "react";
 import SingleCard from "../PokemonList/SingleCard";
+import { Link } from "react-router-dom";
+import FavContext from "../../Context/FavContext";
+import { useContext } from "react";
 import styled from "styled-components";
 
 const Favs = () => {
