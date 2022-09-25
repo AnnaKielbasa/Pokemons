@@ -79,13 +79,6 @@ const Pokeinfo = () => {
       </S.PokeinfoContainer>
 
       <Button>
-        <Link to="/favs">Favs</Link>
-      </Button>
-      <Button>
-        <Link to="/arena">Arena</Link>
-      </Button>
-
-      <Button>
         <Link to="/">Powrót do strony głównej</Link>
       </Button>
     </>

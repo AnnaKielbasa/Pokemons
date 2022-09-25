@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useContext } from "react";
@@ -16,21 +17,25 @@ const Login = () => {
   const { isLoggedIn, loginUser } = useContext(LoginContext);
   const { data } = useQuery(["users"], getUsers);
   const { enqueueSnackbar } = useSnackbar();
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    if (data) {
+      setUsers(data);
+    }
+  }, [data]);
 
   const handleLogin = (values, actions) => {
-    data.some(
+    users?.some(
       (item) => item.email === values.email && item.password === values.password
     )
       ? handleSuccessfulLogin(actions, values)
       : handleUnsuccessfulLogin();
   };
-  const handleSuccessfulLogin = (actions, values) => {
+  const handleSuccessfulLogin = (values) => {
     const newUserData = [{ email: values?.email, password: values?.password }];
-    enqueueSnackbar("Jesteś zalogowany");
+    enqueueSnackbar("Jesteś zalogowana/y");
     loginUser(newUserData);
-    actions.resetForm({
-      values: { email: "", password: "" },
-    });
   };
   const handleUnsuccessfulLogin = () => {
     enqueueSnackbar("Nie udało się zalogować");
@@ -40,7 +45,9 @@ const Login = () => {
     <div>
       {isLoggedIn ? (
         <Button>
-          <Link to="/edit">Jesteś zalogowany.Przejdź do edycji pokemonów</Link>
+          <Link to="/edit">
+            Jesteś zalogowana/y.Możesz przejść do edycji pokemonów
+          </Link>
         </Button>
       ) : (
         <>
@@ -50,6 +57,9 @@ const Login = () => {
               password: "",
             }}
             onSubmit={handleLogin}
+            onKeyPress={(e) => {
+              e.which === 13 && e.preventDefault();
+            }}
           >
             <Form>
               <Field type="email" name="email" placeholder="Email..." />

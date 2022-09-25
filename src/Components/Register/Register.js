@@ -3,25 +3,27 @@ import { userSchema } from "../../Validations/UserValidation";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Link } from "react-router-dom";
 import { v1 } from "uuid";
+import { useSnackbar } from "notistack";
 import { Button } from "@mui/material";
 import styled from "styled-components";
 
 const Register = () => {
   const API_URL = "http://localhost:3500/users";
-
+  const { enqueueSnackbar } = useSnackbar();
   const handleSubmit = async (values, actions) => {
-    try {
-      const response = await axios.post(API_URL, {
+    const response = await axios
+      .post(API_URL, {
         id: v1(),
         name: values.name,
         email: values.email,
         password: values.password,
         confirmedPassword: values.confirmedPassword,
+      })
+      .catch((err) => {
+        console.log(err);
       });
-      const data = await response.data;
-      console.log(data);
-    } catch (error) {
-      console.log(error);
+    if (response && response.data) {
+      enqueueSnackbar("Zostałaś/eś zarejestrowana/y");
     }
 
     actions.resetForm({
@@ -39,6 +41,9 @@ const Register = () => {
         }}
         validationSchema={userSchema}
         onSubmit={handleSubmit}
+        onKeyPress={(e) => {
+          e.which === 13 && e.preventDefault();
+        }}
       >
         <S.Form>
           <S.Field type="text" name="name" placeholder="Imię..." />

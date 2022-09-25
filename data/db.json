@@ -36,39 +36,18 @@
       "confirmedPassword": "Roza098*"
     },
     {
-      "id": "1196b470-373f-11ed-80e9-977326c28885",
-      "name": "Roza",
+      "id": "aa882bd0-3cc8-11ed-8bda-2b8f1ce59ffd",
+      "name": "Rafi",
+      "email": "srafi@gmail.com",
+      "password": "Srafi098*",
+      "confirmedPassword": "Srafi098*"
+    },
+    {
+      "id": "da60e670-3cc9-11ed-bcca-bd6bef20c2aa",
+      "name": "Anna",
       "email": "interia@gma.pc",
       "password": "Pola098*",
       "confirmedPassword": "Pola098*"
-    },
-    {
-      "id": "48e95800-3740-11ed-80e9-977326c28885",
-      "name": "Kwiat",
-      "email": "srat@gmail.com",
-      "password": "Titi098*",
-      "confirmedPassword": "Titi098*"
-    },
-    {
-      "id": "fcd58680-3b83-11ed-8a97-a75e0771ff1c",
-      "name": "Lilia",
-      "email": "abc@gamil.com",
-      "password": "Abcd098*",
-      "confirmedPassword": "Abcd098*"
-    },
-    {
-      "id": "4ae5f620-3b84-11ed-9663-2f4d0bceee4e",
-      "name": "Lilia",
-      "email": "abc@gamil.com",
-      "password": "Pola678*",
-      "confirmedPassword": "Pola678*"
-    },
-    {
-      "id": "76be4c40-3b87-11ed-a99d-6394333db1b0",
-      "name": "Anna",
-      "email": "abc@gamil.com",
-      "password": "Hela098*",
-      "confirmedPassword": "Hela098*"
     }
   ],
   "pokemonstats": [
@@ -172,6 +151,60 @@
         "overgrow",
         "chlorophyll"
       ]
+    },
+    {
+      "id": 15,
+      "name": "beedrill",
+      "base_experience": 188,
+      "height": 10,
+      "weight": 295,
+      "abilities": [
+        {
+          "ability": {
+            "name": "swarm",
+            "url": "https://pokeapi.co/api/v2/ability/68/"
+          },
+          "is_hidden": false,
+          "slot": 1
+        },
+        {
+          "ability": {
+            "name": "sniper",
+            "url": "https://pokeapi.co/api/v2/ability/97/"
+          },
+          "is_hidden": true,
+          "slot": 3
+        }
+      ],
+      "fightsWon": 1,
+      "fightsLost": 0
+    },
+    {
+      "id": 5,
+      "name": "charmeleon",
+      "base_experience": 142,
+      "height": 11,
+      "weight": 190,
+      "abilities": [
+        {
+          "ability": {
+            "name": "blaze",
+            "url": "https://pokeapi.co/api/v2/ability/66/"
+          },
+          "is_hidden": false,
+          "slot": 1
+        },
+        {
+          "ability": {
+            "name": "solar-power",
+            "url": "https://pokeapi.co/api/v2/ability/94/"
+          },
+          "is_hidden": true,
+          "slot": 3
+        }
+      ],
+      "fightsWon": 0,
+      "fightsLost": 1
     }
   ],
   "newpokemons": [

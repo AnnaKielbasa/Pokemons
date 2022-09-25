@@ -9,7 +9,7 @@ const Logout = () => {
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
   const handleLogout = () => {
-    enqueueSnackbar("Zostałeś wylogowany");
+    enqueueSnackbar("Zostałeś wylogowana/y");
     setIsLoggedIn({ email: "", password: "" });
     logoutUser(isLoggedIn);
     navigate("/favs");

@@ -1,6 +1,5 @@
 import { ThemeProvider } from "styled-components";
-import { useState } from "react";
-import GlobalStyle from "./globalStyles";
+import GlobalStyle from "./Theme/GlobalStyle";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { FavProvider } from "./Context/FavContext";
 import { LoginProvider } from "./Context/LoginContext";
@@ -8,25 +7,16 @@ import { ArenaProvider } from "./Context/ArenaContext";
 import { ModifiedPokemonsContextProvider } from "./Context/ModifiedPokemonsContext";
 import { NewPokemonsContextProvider } from "./Context/NewPokemonsContext";
 import { SnackbarProvider } from "notistack";
-
-import { theme } from "./Theme";
+import { lightTheme, darkTheme } from "./Theme/Theme";
+import { useDarkMode } from "./Theme/useDarkMode";
 
 import Routing from "./Routing";
 
-const mainTheme = {
-  subtitle: "#ffef96",
-  title: "#50394c",
-  background: "#b2b2b2",
-  body: "#f4e1d2",
-};
-const earthyTheme = {
-  title: "#3e4444",
-  body: "#82b74b",
-  subtitle: "#405d27",
-  background: "#c1946a",
-};
-
 function App() {
+  const [theme, themeToggler, mountedComponent] = useDarkMode();
+
+  const themeMode = theme === "light" ? lightTheme : darkTheme;
+
   const client = new QueryClient({
     defaultOptions: {
       queries: {
@@ -37,20 +27,19 @@ function App() {
       },
     },
   });
-  const [theme, setTheme] = useState("main");
-  const isDarkTheme = theme === "earthy";
+  if (!mountedComponent) return <div />;
 
   return (
     <QueryClientProvider client={client}>
       <SnackbarProvider>
-        <ThemeProvider theme={isDarkTheme ? earthyTheme : mainTheme}>
+        <ThemeProvider theme={themeMode}>
+          <GlobalStyle />
           <NewPokemonsContextProvider>
             <ModifiedPokemonsContextProvider>
               <FavProvider>
                 <LoginProvider>
                   <ArenaProvider>
-                    <GlobalStyle />
-                    <Routing />
+                    <Routing theme={theme} themeToggler={themeToggler} />
                   </ArenaProvider>
                 </LoginProvider>
               </FavProvider>

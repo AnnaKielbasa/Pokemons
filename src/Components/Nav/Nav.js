@@ -3,13 +3,18 @@ import LoginContext from "../../Context/LoginContext";
 import { useContext } from "react";
 import styled from "styled-components";
 
-const Nav = () => {
+const Nav = ({ theme, themeToggler }) => {
   const { isLoggedIn } = useContext(LoginContext);
   return (
     <div>
       <S.Nav>
         <S.Logo>
-          <Link to="/">Pokedex</Link>
+          <Link to="/">
+            Pokedex
+            <button onClick={themeToggler} theme={theme}>
+              Switch theme
+            </button>
+          </Link>
         </S.Logo>
         <S.Container>
           <Link to="/favs">Ulubione</Link>
@@ -42,6 +47,14 @@ const S = {
     padding: 1rem 2rem;
     background-color: #50394c;
     font-size: 1.25rem;
+    > button {
+      font-size: 1.5rem;
+      border-radius: 1rem;
+      background: ${({ theme }) => theme.background};
+      border: 2px solid ${({ theme }) => theme.toggleBorder};
+      color: ${({ theme }) => theme.text};
+      cursor: pointer;
+    }
   `,
   Logo: styled.div`
     color: #ffef96;

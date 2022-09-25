@@ -29,28 +29,37 @@ const EditForm = ({ name, url }) => {
 
   let submitAction;
   const handleCreateNew = async (values) => {
-    const response = await axios.post(API_NEW_URL, {
-      id: v1(),
-      name: values.name,
-      height: values.height,
-      weight: values.weight,
-      experience: values.base_experience,
-      abilities: values.abilities,
-    });
+    const response = await axios
+      .post(API_NEW_URL, {
+        id: v1(),
+        name: values.name,
+        height: values.height,
+        weight: values.weight,
+        experience: values.base_experience,
+        abilities: values.abilities,
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
     if (response && response.data) {
       setNewPokemons([...newPokemons, response.data]);
     }
   };
 
   const handleEdit = async (values) => {
-    const response = await axios.post(API_URL, {
-      id: values.id,
-      name: values.name,
-      height: values.height,
-      weight: values.weight,
-      experience: values.base_experience,
-      abilities: values.abilities,
-    });
+    const response = await axios
+      .post(API_URL, {
+        id: values.id,
+        name: values.name,
+        height: values.height,
+        weight: values.weight,
+        experience: values.base_experience,
+        abilities: values.abilities,
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     if (response && response.data) {
       setModifiedPokemons([...modifiedPokemons, response.data]);
     }
