@@ -11,10 +11,10 @@ import Error from "./Components/Error/Error";
 import Register from "./Components/Register/Register";
 import Logout from "./Components/Logout/Logout";
 
-const Routing = ({ theme, themeToggler }) => {
+const Routing = ({ themeToggler }) => {
   return (
     <BrowserRouter>
-      <Nav theme={theme} themeToggler={themeToggler} />
+      <Nav themeToggler={themeToggler} />
       <Routes>
         <Route path="/" element={<HomepageContent />} />
         <Route path="pokeinfo" element={<Pokeinfo />} />

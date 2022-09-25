@@ -91,21 +91,22 @@ const Arena = () => {
         </S.PlaceholderContainer>
       </S.Container>
       <S.ButtonContainer>
-        <Button
+        <S.Button
           onClick={() => handleFight()}
           disabled={arena.length !== 2 || isFigthOver}
         >
           Walcz!
-        </Button>
-
+        </S.Button>
+      </S.ButtonContainer>
+      <S.ButtonContainer>
         {isFigthOver ? (
-          <Button onClick={() => handleDeleteAllPokemons()}>
+          <S.Button onClick={() => handleDeleteAllPokemons()}>
             <Link to="/">Opuść arenę</Link>
-          </Button>
+          </S.Button>
         ) : (
-          <Button>
+          <S.Button>
             <Link to="/">Powrót do strony głównej</Link>
-          </Button>
+          </S.Button>
         )}
       </S.ButtonContainer>
     </>
@@ -132,14 +133,13 @@ const S = {
     flex-direction: row;
   `,
   PokemonPlaceholder: styled.div`
-    background-color: #ffef96;
+    background-color: ${({ theme }) => theme.background};
     min-height: 60vh;
     min-width: 30vw;
     height: 500px;
     width: 400px;
     text-align: center;
     border-radius: 1rem;
-
     > img {
       max-height: 200px;
     }
@@ -148,5 +148,15 @@ const S = {
     display: flex;
     justify-content: center;
     align-items: center;
+  `,
+  Button: styled(Button)`
+    && {
+      font-size: 2rem;
+      color: ${({ theme }) => theme.text};
+    }
+    && > a {
+      color: ${({ theme }) => theme.text};
+      font-size: 1rem;
+    }
   `,
 };

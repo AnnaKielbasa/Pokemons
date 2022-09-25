@@ -43,11 +43,8 @@ const S = {
     display: flex;
     justify-content: center;
     align-items: center;
-    > OutlinedInput {
-      background-color: #ffef96;
-    }
   `,
   OutlinedInput: styled(OutlinedInput)`
-    background-color: #ffef96;
+    background-color: ${({ theme }) => theme.background};
   `,
 };

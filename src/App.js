@@ -39,7 +39,7 @@ function App() {
               <FavProvider>
                 <LoginProvider>
                   <ArenaProvider>
-                    <Routing theme={theme} themeToggler={themeToggler} />
+                    <Routing themeToggler={themeToggler} />
                   </ArenaProvider>
                 </LoginProvider>
               </FavProvider>

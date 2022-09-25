@@ -7,6 +7,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useQuery } from "@tanstack/react-query";
 import { useSnackbar } from "notistack";
 import { Button } from "@mui/material";
+import styled from "styled-components";
 
 const API_URL = "http://localhost:3500/users";
 const getUsers = async () => {
@@ -44,13 +45,13 @@ const Login = () => {
   return (
     <div>
       {isLoggedIn ? (
-        <Button>
+        <S.Button>
           <Link to="/edit">
             Jesteś zalogowana/y.Możesz przejść do edycji pokemonów
           </Link>
-        </Button>
+        </S.Button>
       ) : (
-        <>
+        <S.Container>
           <Formik
             initialValues={{
               email: "",
@@ -61,21 +62,76 @@ const Login = () => {
               e.which === 13 && e.preventDefault();
             }}
           >
-            <Form>
-              <Field type="email" name="email" placeholder="Email..." />
+            <S.Form>
+              <S.Field
+                type="email"
+                name="email"
+                placeholder="Email..."
+                autoComplete="on"
+              />
               <ErrorMessage name="email" />
-              <Field type="password" name="password" placeholder="Hasło..." />
+              <S.Field
+                type="password"
+                name="password"
+                placeholder="Hasło..."
+                autoComplete="on"
+              />
               <ErrorMessage name="password" />
-              <button type="submit">Login</button>
-            </Form>
+              <S.Button type="submit">Login</S.Button>
+            </S.Form>
           </Formik>
-          <Button>
-            <Link to="/register">Nie masz konta? Zarejestruj się tutaj</Link>
-          </Button>
-        </>
+
+          <S.ButtonContainer>
+            <S.Button>
+              <Link to="/register">Nie masz konta? Zarejestruj się tutaj</Link>
+            </S.Button>
+          </S.ButtonContainer>
+        </S.Container>
       )}
     </div>
   );
 };
 
 export default Login;
+
+const S = {
+  Container: styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    background-color: ${({ theme }) => theme.text};
+    max-width: 25vw;
+    margin: 1rem auto;
+    padding: 1rem;
+    border-radius: 0.5rem;
+  `,
+
+  Form: styled(Form)`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-size: 1rem;
+  `,
+  Field: styled(Field)`
+    &&& {
+      font-size: 1.5rem;
+      border-radius: 0.5rem;
+    }
+  `,
+  Button: styled(Button)`
+    && {
+      font-size: 1rem;
+      color: ${({ theme }) => theme.text};
+      background-color: ${({ theme }) => theme.background};
+    }
+    && > a {
+      color: ${({ theme }) => theme.text};
+      font-size: 1rem;
+      background-color: ${({ theme }) => theme.background};
+    }
+  `,
+  ButtonContainer: styled.div`
+    display: flex;
+    justify-content: center;
+  `,
+};

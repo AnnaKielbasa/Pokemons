@@ -19,12 +19,13 @@ const S = {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 2rem;
+    margin: 2rem;
     gap: 1rem;
   `,
   Button: styled(Button)`
     && {
-      background-color: #ffef96;
+      background-color: ${({ theme }) => theme.background};
+      color: ${({ theme }) => theme.text};
     }
   `,
 };

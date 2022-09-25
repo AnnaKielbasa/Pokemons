@@ -31,7 +31,7 @@ const Register = () => {
     });
   };
   return (
-    <div>
+    <S.Container>
       <Formik
         initialValues={{
           name: "",
@@ -61,29 +61,61 @@ const Register = () => {
           <S.Button type="submit">Zarejestruj się</S.Button>
         </S.Form>
       </Formik>
-
-      <Button>
-        <Link to="/login">Masz już konto? Zaloguj się tutaj</Link>
-      </Button>
-    </div>
+      <S.ButtonContainer>
+        <S.Button>
+          <Link to="/login">Masz już konto? Zaloguj się tutaj</Link>
+        </S.Button>
+      </S.ButtonContainer>
+    </S.Container>
   );
 };
 
 export default Register;
 
 const S = {
+  Container: styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 25vw;
+    margin: 1rem auto;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: ${({ theme }) => theme.text};
+  `,
+
   Form: styled(Form)`
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 1rem;
+    font-size: 1rem;
   `,
   Field: styled(Field)`
     max-width: 300px;
     font-size: 1.5rem;
+    border-radius: 0.5rem;
   `,
   Button: styled(Button)`
-    max-width: 300px;
+    && {
+      font-size: 1rem;
+      color: ${({ theme }) => theme.text};
+      background-color: ${({ theme }) => theme.background};
+    }
+    && > a {
+      color: ${({ theme }) => theme.text};
+      font-size: 1rem;
+      background-color: ${({ theme }) => theme.background};
+    }
+  `,
+  ButtonContainer: styled.div`
+    display: flex;
+    justify-content: center;
+  `,
+  FormContainer: styled.div`
+    max-width: 30vw;
+    max-height: 50vh;
+    margin: 0 auto;
   `,
 };

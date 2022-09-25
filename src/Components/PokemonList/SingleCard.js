@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const SingleCard = ({ data }) => {
+const SingleCard = ({ data, theme }) => {
   const { id, height, weight, abilities, base_experience, name } = data;
 
   const navigate = useNavigate();
@@ -10,7 +10,7 @@ const SingleCard = ({ data }) => {
   };
 
   return (
-    <S.SigleCard onClick={() => navigateToPokeinfo(data)}>
+    <S.SigleCard theme={theme} onClick={() => navigateToPokeinfo(data)}>
       <img
         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`}
         alt=""
@@ -48,7 +48,7 @@ const S = {
   SigleCard: styled.div`
     max-width: 400px;
     max-height: 800px;
-    background-color: #ffef96;
+    background-color: ${({ theme }) => theme.background};
     border-radius: 1rem;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
     flex-basis: 100%;

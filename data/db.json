@@ -155,7 +155,7 @@
     {
       "id": 15,
       "name": "beedrill",
-      "base_experience": 188,
+      "base_experience": 198,
       "height": 10,
       "weight": 295,
       "abilities": [
@@ -176,7 +176,7 @@
           "slot": 3
         }
       ],
-      "fightsWon": 1,
+      "fightsWon": 2,
       "fightsLost": 0
     },
     {
@@ -204,7 +204,7 @@
         }
       ],
       "fightsWon": 0,
-      "fightsLost": 1
+      "fightsLost": 2
     }
   ],
   "newpokemons": [

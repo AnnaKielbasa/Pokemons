@@ -3,18 +3,15 @@ import LoginContext from "../../Context/LoginContext";
 import { useContext } from "react";
 import styled from "styled-components";
 
-const Nav = ({ theme, themeToggler }) => {
+const Nav = ({ themeToggler }) => {
   const { isLoggedIn } = useContext(LoginContext);
+
   return (
     <div>
       <S.Nav>
         <S.Logo>
-          <Link to="/">
-            Pokedex
-            <button onClick={themeToggler} theme={theme}>
-              Switch theme
-            </button>
-          </Link>
+          <Link to="/">Pokedex</Link>
+          <S.Button onClick={themeToggler}>Switch theme</S.Button>
         </S.Logo>
         <S.Container>
           <Link to="/favs">Ulubione</Link>
@@ -45,35 +42,38 @@ const S = {
     align-items: center;
     margin: 1rem 0;
     padding: 1rem 2rem;
-    background-color: #50394c;
+    background-color: ${({ theme }) => theme.backgroundDark};
     font-size: 1.25rem;
-    > button {
-      font-size: 1.5rem;
-      border-radius: 1rem;
-      background: ${({ theme }) => theme.background};
-      border: 2px solid ${({ theme }) => theme.toggleBorder};
-      color: ${({ theme }) => theme.text};
-      cursor: pointer;
-    }
   `,
   Logo: styled.div`
-    color: #ffef96;
-    > a {
+  display:flex;
+  justify-content:center:
+  align-atems:center;
+  gap:1rem;
+       > a {
       text-decoration: none;
-      color: #ffef96;
+      color: ${({ theme }) => theme.textLight};
       &:hover {
-        background-color: #b2b2b2;
+        background-color: ${({ theme }) => theme.hover};
       }
+  `,
+  Button: styled.button`
+    font-size: 1.25rem;
+    border-radius: 0.8rem;
+    background: ${({ theme }) => theme.background};
+    border: 2px solid ${({ theme }) => theme.toggleBorder};
+    color: ${({ theme }) => theme.text};
+    cursor: pointer;
   `,
   Container: styled.div`
     display: flex;
     gap: 1rem;
     > a {
       text-decoration: none;
-      color: #ffef96;
+      color: ${({ theme }) => theme.textLight};
 
       &:hover {
-        background-color: #b2b2b2;
+        background-color: ${({ theme }) => theme.hover};
       }
     }
   `,
