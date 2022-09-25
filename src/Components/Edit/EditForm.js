@@ -4,6 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { pokemonSchema } from "../../Validations/PokemonValidation";
 import { useContext } from "react";
 import ModifiedPokemonsContext from "../../Context/ModifiedPokemonsContext";
+import NewPokemonsContext from "../../Context/NewPokemonsContext";
 import { v1 } from "uuid";
 import { useSnackbar } from "notistack";
 import { Button } from "@mui/material";
@@ -11,10 +12,12 @@ import styled from "styled-components";
 
 const EditForm = ({ name, url }) => {
   const API_URL = "http://localhost:3500/pokemonstats";
+  const API_NEW_URL = "http://localhost:3500/newpokemons";
   const { isError, error, isLoading, data } = useFetchSingle({ name, url });
   const { modifiedPokemons, setModifiedPokemons } = useContext(
     ModifiedPokemonsContext
   );
+  const { newPokemons, setNewPokemons } = useContext(NewPokemonsContext);
   const { enqueueSnackbar } = useSnackbar();
 
   if (isLoading) {
@@ -26,7 +29,7 @@ const EditForm = ({ name, url }) => {
 
   let submitAction;
   const handleCreateNew = async (values) => {
-    const response = await axios.post(API_URL, {
+    const response = await axios.post(API_NEW_URL, {
       id: v1(),
       name: values.name,
       height: values.height,
@@ -35,7 +38,7 @@ const EditForm = ({ name, url }) => {
       abilities: values.abilities,
     });
     if (response && response.data) {
-      setModifiedPokemons([...modifiedPokemons, response.data]);
+      setNewPokemons([...newPokemons, response.data]);
     }
   };
 
@@ -49,7 +52,7 @@ const EditForm = ({ name, url }) => {
       abilities: values.abilities,
     });
     if (response && response.data) {
-      setModifiedPokemons([...modifiedPokemons, response]);
+      setModifiedPokemons([...modifiedPokemons, response.data]);
     }
   };
   return (

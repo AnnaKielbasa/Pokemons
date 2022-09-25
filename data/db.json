@@ -173,5 +173,44 @@
         "chlorophyll"
       ]
     }
+  ],
+  "newpokemons": [
+    {
+      "id": 8,
+      "name": "wartortle",
+      "base_experience": 152,
+      "height": 10,
+      "weight": 225,
+      "abilities": [
+        {
+          "ability": {
+            "name": "torrent",
+            "url": "https://pokeapi.co/api/v2/ability/67/"
+          },
+          "is_hidden": false,
+          "slot": 1
+        },
+        {
+          "ability": {
+            "name": "rain-dish",
+            "url": "https://pokeapi.co/api/v2/ability/44/"
+          },
+          "is_hidden": true,
+          "slot": 3
+        }
+      ],
+      "fightsWon": 1,
+      "fightsLost": 0
+    },
+    {
+      "id": "005f0670-3cb8-11ed-98d7-a7fdf5de4aea",
+      "name": "ivysaur",
+      "height": 10,
+      "weight": 130,
+      "abilities": [
+        "overgrow",
+        "chlorophyll"
+      ]
+    }
   ]
 }

@@ -1,8 +1,11 @@
 import Pagination from "../PokemonList/Pagination";
 import SinglePokemon from "../PokemonList/SinglePokemon";
+import SingleCard from "../PokemonList/SingleCard";
 import Search from "../Search/Search";
 import { useState } from "react";
 import useFetchAll from "../../FetchData/useFetchAll";
+import { useContext } from "react";
+import NewPokemonsContext from "../../Context/NewPokemonsContext";
 import styled from "styled-components";
 
 const HomepageContent = () => {
@@ -10,6 +13,7 @@ const HomepageContent = () => {
   const [searchValue, setSearchValue] = useState("");
   const [filteredPokemons, setFilteredPokemons] = useState([]);
   const { isError, error, isLoading, data } = useFetchAll();
+  const { newPokemons } = useContext(NewPokemonsContext);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -41,6 +45,10 @@ const HomepageContent = () => {
             .slice(page, page + 15)
             .map((pokemon) => <SinglePokemon key={pokemon.name} {...pokemon} />)
         )}
+        {page === 150 &&
+          newPokemons?.map((pokemon) => (
+            <SingleCard key={pokemon.name} data={pokemon} />
+          ))}
       </S.Container>
       {pokemonsToDisplay.length > 15 && (
         <Pagination page={page} setPage={setPage} />

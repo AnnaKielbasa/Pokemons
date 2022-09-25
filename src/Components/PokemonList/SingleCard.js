@@ -30,7 +30,11 @@ const SingleCard = ({ data }) => {
           <h3> Base experience</h3>
         </S.InfoContainer>
         <S.InfoContainer>
-          <span>{abilities.map((data) => `${data.ability.name}, `)}</span>
+          <span>
+            {abilities.map((data) =>
+              data?.ability?.name ? `${data?.ability?.name}, ` : `${data} ,`
+            )}
+          </span>
           <h3>Abilities</h3>
         </S.InfoContainer>
       </S.AllInfoContainer>

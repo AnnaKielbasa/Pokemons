@@ -6,6 +6,7 @@ import { FavProvider } from "./Context/FavContext";
 import { LoginProvider } from "./Context/LoginContext";
 import { ArenaProvider } from "./Context/ArenaContext";
 import { ModifiedPokemonsContextProvider } from "./Context/ModifiedPokemonsContext";
+import { NewPokemonsContextProvider } from "./Context/NewPokemonsContext";
 import { SnackbarProvider } from "notistack";
 
 import { theme } from "./Theme";
@@ -43,16 +44,18 @@ function App() {
     <QueryClientProvider client={client}>
       <SnackbarProvider>
         <ThemeProvider theme={isDarkTheme ? earthyTheme : mainTheme}>
-          <ModifiedPokemonsContextProvider>
-            <FavProvider>
-              <LoginProvider>
-                <ArenaProvider>
-                  <GlobalStyle />
-                  <Routing />
-                </ArenaProvider>
-              </LoginProvider>
-            </FavProvider>
-          </ModifiedPokemonsContextProvider>
+          <NewPokemonsContextProvider>
+            <ModifiedPokemonsContextProvider>
+              <FavProvider>
+                <LoginProvider>
+                  <ArenaProvider>
+                    <GlobalStyle />
+                    <Routing />
+                  </ArenaProvider>
+                </LoginProvider>
+              </FavProvider>
+            </ModifiedPokemonsContextProvider>
+          </NewPokemonsContextProvider>
         </ThemeProvider>
       </SnackbarProvider>
     </QueryClientProvider>
